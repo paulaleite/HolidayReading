@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		647809DC22D1156F00664CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647809DB22D1156F00664CA4 /* AppDelegate.swift */; };
-		647809DE22D1156F00664CA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647809DD22D1156F00664CA4 /* ViewController.swift */; };
 		647809E422D1156F00664CA4 /* HolidayReading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 647809E222D1156F00664CA4 /* HolidayReading.xcdatamodeld */; };
 		647809E622D1157100664CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647809E522D1157100664CA4 /* Assets.xcassets */; };
 		647809E922D1157100664CA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647809E722D1157100664CA4 /* LaunchScreen.storyboard */; };
@@ -46,7 +45,6 @@
 /* Begin PBXFileReference section */
 		647809D822D1156F00664CA4 /* HolidayReading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolidayReading.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		647809DB22D1156F00664CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		647809DD22D1156F00664CA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		647809E322D1156F00664CA4 /* HolidayReading.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HolidayReading.xcdatamodel; sourceTree = "<group>"; };
 		647809E522D1157100664CA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		647809E822D1157100664CA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				64780A1C22D12BDE00664CA4 /* Controller */,
 				647809DB22D1156F00664CA4 /* AppDelegate.swift */,
 				647809E722D1157100664CA4 /* LaunchScreen.storyboard */,
-				647809DD22D1156F00664CA4 /* ViewController.swift */,
 				64CEED0322D525540095C93D /* Main.storyboard */,
 				647809E522D1157100664CA4 /* Assets.xcassets */,
 				647809EA22D1157100664CA4 /* Info.plist */,
@@ -325,7 +322,6 @@
 				64780A1B22D12BC600664CA4 /* MyBooksTVCell.swift in Sources */,
 				64780A1922D1267C00664CA4 /* MyBooksTVC.swift in Sources */,
 				64780A2222D1816400664CA4 /* QuantitiesTVCell.swift in Sources */,
-				647809DE22D1156F00664CA4 /* ViewController.swift in Sources */,
 				647809E422D1156F00664CA4 /* HolidayReading.xcdatamodeld in Sources */,
 				64CEED0222D514F10095C93D /* NewBookTVC.swift in Sources */,
 				647809DC22D1156F00664CA4 /* AppDelegate.swift in Sources */,
