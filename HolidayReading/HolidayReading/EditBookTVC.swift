@@ -14,6 +14,10 @@ class EditBookTVC: UITableViewController {
     
     @IBOutlet weak var pagesLabel: UILabel!
     
+    @IBOutlet var timeOfReadingPerDayLabel: UILabel!
+    
+    @IBOutlet var timeOfReadingPerDayPicker: UIPickerView!
+    
     @IBOutlet var timeOfReadingLabel: UILabel!
     
     @IBOutlet var timeOfReadingPicker: UIPickerView!
@@ -24,7 +28,7 @@ class EditBookTVC: UITableViewController {
     
     @IBOutlet var readingUpdateButton: UIButton!
     
-    var areCellsExpanded = [false, false]
+    var areCellsExpanded = [false, false, false]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +37,7 @@ class EditBookTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section >= 1 && indexPath.section < 3 {
+        if indexPath.section >= 1 && indexPath.section < 4 {
             if areCellsExpanded[indexPath.section - 1] {
                 areCellsExpanded[indexPath.section - 1] = false
             } else {
@@ -49,9 +53,9 @@ class EditBookTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 || indexPath.section == 3 {
+        if indexPath.section == 0 || indexPath.section == 4 {
             return 44
-        } else if indexPath.section == 4 {
+        } else if indexPath.section == 5 {
             return 168
         } else {
             return areCellsExpanded[indexPath.section - 1] == true ? 212 : 44
