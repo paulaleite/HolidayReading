@@ -10,58 +10,57 @@ import UIKit
 
 class NewBookTVC: UITableViewController {
 
-    var selectedRow: Int = 0
+    @IBOutlet var bookImageView: UIImageView!
     
-    var selectedSection: Int = 2
+    @IBOutlet var bookNameTextField: UITextField!
     
-    var selected: Bool = false
+    @IBOutlet var numberOfPagesTextField: UITextField!
     
-    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet var timeReadingLabel: UILabel!
     
-    @IBOutlet weak var nameOfBookLabel: UILabel!
+    @IBOutlet var timeReadingPicker: UIPickerView!
     
-    @IBOutlet weak var nameOfBookTextField: UITextField!
+    @IBOutlet var limitReadingLabel: UILabel!
     
-    @IBOutlet weak var pagesLabel: UILabel!
+    @IBOutlet var limitReadingPicker: UIPickerView!
     
-    @IBOutlet weak var pagesTextField: UILabel!
+    @IBOutlet var timeOfReadingLabel: UILabel!
     
-    @IBOutlet weak var amountOfPagesPerDayLabel: UILabel!
+    @IBOutlet var timeOfReadingPicker: UIPickerView!
     
-    @IBOutlet weak var amountOfPagesPerDayStepper: UIStepper!
+    var areCellsExpanded = [false, false, false]
     
-    @IBOutlet weak var amountOfPagesPerDayView: UIView!
-    
-    @IBOutlet weak var amountOfPagesPerDayInputCell: UITableViewCell!
-    
-    @IBOutlet weak var amountOfReadingPerDayLabel: UILabel!
-    
-    @IBOutlet weak var amountOfReadingPerDayTextField: UILabel!
-    
-    @IBOutlet weak var amountOfReadingPerDayPicker: UIPickerView!
-    
-    @IBOutlet weak var amountOfReadinPerDayInputCell: UITableViewCell!
-    
-    @IBOutlet weak var timeOfReadingLabel: UILabel!
-    
-    @IBOutlet weak var timeOfReadingTextField: UILabel!
-    
-    @IBOutlet weak var timeOfReadingPicker: UIPickerView!
-    
-    @IBOutlet weak var timeOfReadingInputCell: UITableViewCell!
-    
-    @IBOutlet weak var limitForReadingLabel: UILabel!
-    
-    @IBOutlet weak var limitForReadingTextField: UILabel!
-    
-    @IBOutlet weak var limitForReadingPicker: UIDatePicker!
-    
-    @IBOutlet weak var limitForReadingInputCell: UITableViewCell!
-    
-  
     override func viewDidLoad() {
         super.viewDidLoad()
-        amountOfPagesPerDayInputCell.isHidden = true
+        
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section > 1 {
+            if areCellsExpanded[indexPath.section - 2] {
+                areCellsExpanded[indexPath.section - 2] = false
+            } else {
+                for i in 0 ..< areCellsExpanded.count {
+                    areCellsExpanded[i] = false
+                }
+                areCellsExpanded[indexPath.section - 2] = true
+            }
+
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 160
+        } else if indexPath.section == 1 {
+            return 44
+        } else {
+            return areCellsExpanded[indexPath.section - 2] == true ? 212 : 44
+        }
     }
     
 

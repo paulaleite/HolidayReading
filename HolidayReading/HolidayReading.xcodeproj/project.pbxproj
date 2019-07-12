@@ -23,6 +23,7 @@
 		64780A2422D18A0500664CA4 /* PointsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64780A2322D18A0500664CA4 /* PointsTVCell.swift */; };
 		64CEED0222D514F10095C93D /* NewBookTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEED0122D514F10095C93D /* NewBookTVC.swift */; };
 		64CEED0422D525540095C93D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CEED0322D525540095C93D /* Main.storyboard */; };
+		64E039DE22D8E2F400AD6B2E /* EditBookTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E039DD22D8E2F300AD6B2E /* EditBookTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		64780A2322D18A0500664CA4 /* PointsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTVCell.swift; sourceTree = "<group>"; };
 		64CEED0122D514F10095C93D /* NewBookTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewBookTVC.swift; path = ../NewBookTVC.swift; sourceTree = "<group>"; };
 		64CEED0322D525540095C93D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		64E039DD22D8E2F300AD6B2E /* EditBookTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditBookTVC.swift; path = ../EditBookTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			children = (
 				64780A1822D1267C00664CA4 /* MyBooksTVC.swift */,
 				64CEED0122D514F10095C93D /* NewBookTVC.swift */,
+				64E039DD22D8E2F300AD6B2E /* EditBookTVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 			files = (
 				64780A1B22D12BC600664CA4 /* MyBooksTVCell.swift in Sources */,
 				64780A1922D1267C00664CA4 /* MyBooksTVC.swift in Sources */,
+				64E039DE22D8E2F400AD6B2E /* EditBookTVC.swift in Sources */,
 				64780A2222D1816400664CA4 /* QuantitiesTVCell.swift in Sources */,
 				647809E422D1156F00664CA4 /* HolidayReading.xcdatamodeld in Sources */,
 				64CEED0222D514F10095C93D /* NewBookTVC.swift in Sources */,
