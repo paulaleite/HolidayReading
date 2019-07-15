@@ -30,21 +30,25 @@ class EditBookTVC: UITableViewController {
     
     var areCellsExpanded = [false, false, false]
     
+    var book: Book?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        //print(book)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section >= 1 && indexPath.section < 4 {
-            if areCellsExpanded[indexPath.section - 1] {
-                areCellsExpanded[indexPath.section - 1] = false
+        if indexPath.section == 1 {
+            if areCellsExpanded[indexPath.row] {
+                areCellsExpanded[indexPath.row] = false
             } else {
                 for i in 0 ..< areCellsExpanded.count {
                     areCellsExpanded[i] = false
                 }
-                areCellsExpanded[indexPath.section - 1] = true
+                areCellsExpanded[indexPath.row] = true
             }
             
             tableView.beginUpdates()
@@ -53,12 +57,10 @@ class EditBookTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 || indexPath.section == 4 {
+        if indexPath.section == 0 || indexPath.section == 2 {
             return 44
-        } else if indexPath.section == 5 {
-            return 168
         } else {
-            return areCellsExpanded[indexPath.section - 1] == true ? 212 : 44
+            return areCellsExpanded[indexPath.row] == true ? 212 : 44
         }
     }
 

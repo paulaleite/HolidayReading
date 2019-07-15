@@ -16,21 +16,9 @@ class MyBooksTVCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var numOfPagesLabel: UILabel! {
-        didSet {
-            numOfPagesLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        }
-    }
-    
     @IBOutlet weak var numOfPages: UILabel! {
         didSet {
             numOfPages.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
-        }
-    }
-    
-    @IBOutlet weak var timeLeftLabel: UILabel! {
-        didSet {
-            timeLeftLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
     }
     
@@ -40,19 +28,16 @@ class MyBooksTVCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var checkmarkButton: UIButton! {
+    @IBOutlet weak var updatePagesReadButton: UIButton! {
         didSet {
-            checkmarkButton.layer.borderWidth = 2
-            checkmarkButton.layer.borderColor = UIColor(red: 222/255, green: 172/255, blue: 58/255, alpha: 1).cgColor
-            checkmarkButton.layer.cornerRadius = 0.5 * checkmarkButton.frame.width
+            updatePagesReadButton.setBackgroundImage(#imageLiteral(resourceName: "updatePagesRead"), for: .normal)
         }
     }
     
-    @IBOutlet weak var checkmarkImage: UIImageView!
-    
     @IBOutlet weak var containerView: UIView! {
         didSet {
-            containerView.layer.cornerRadius = 10
+            containerView.clipsToBounds = false
+            containerView.layer.cornerRadius = 8
             containerView.layer.shadowOpacity = 6
             containerView.layer.shadowRadius = 4
             containerView.layer.shadowColor = UIColor.lightGray.cgColor
@@ -61,13 +46,16 @@ class MyBooksTVCell: UITableViewCell {
     }
     
     
-    @IBOutlet weak var bookImage: UIImageView! {
+    @IBOutlet weak var bookImage: RoundedImageView!
+    
+    @IBOutlet weak var selectedView: UIView! {
         didSet {
-            bookImage.layer.cornerRadius = 10
-            bookImage.layer.shadowOpacity = 6
-            bookImage.layer.shadowRadius = 4
-            bookImage.layer.shadowColor = UIColor.lightGray.cgColor
-            bookImage.layer.shadowOffset = CGSize(width: 3, height: 3)
+            selectedView.clipsToBounds = false
+            selectedView.layer.cornerRadius = 8
+            selectedView.layer.shadowOpacity = 6
+            selectedView.layer.shadowRadius = 4
+            selectedView.layer.shadowColor = UIColor.lightGray.cgColor
+            selectedView.layer.shadowOffset = CGSize.zero
         }
     }
     
@@ -77,9 +65,26 @@ class MyBooksTVCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        super.setSelected(false, animated: animated)
+        changeSelectedViewColor(hasToChange: selected)
+        
+        if selected {
+            UIView.animate(withDuration: 0.25) {
+                self.setSelected(false, animated: true)
+            }
+        }
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        changeSelectedViewColor(hasToChange: highlighted)
+    }
+    
+    func changeSelectedViewColor(hasToChange: Bool) {
+        if hasToChange {
+            selectedView.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.35)
+        } else {
+            selectedView.layer.backgroundColor = UIColor.clear.cgColor
+        }
     }
 
 }
