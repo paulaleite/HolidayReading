@@ -17,6 +17,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdatePagesReadVC" customModule="HolidayReading" customModuleProvider="target">
             <connections>
+                <outlet property="amountOfPagesLabel" destination="qEf-o8-gsP" id="2mC-8S-lpH"/>
+                <outlet property="amountOfPagesSlider" destination="Yn7-Kc-o9x" id="BrW-OS-kLV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,12 +36,15 @@
                             <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yn7-Kc-o9x">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="-0.5" maxValue="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="Yn7-Kc-o9x">
                             <rect key="frame" x="14.5" y="75" width="302" height="31"/>
                             <color key="tintColor" red="0.87058823529999996" green="0.67450980390000004" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="WLJ-yx-EsM"/>
                             </constraints>
+                            <connections>
+                                <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="6c5-sd-Yna"/>
+                            </connections>
                         </slider>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEf-o8-gsP">
                             <rect key="frame" x="25" y="105" width="281" height="20"/>
@@ -56,6 +61,9 @@
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="associateAmountOfPages:" destination="-1" eventType="touchUpInside" id="Cpn-ab-gws"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.25490196079999999" green="0.23137254900000001" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>

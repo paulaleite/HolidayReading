@@ -44,18 +44,6 @@ extension NewBookTVC: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        //timeReadingLabel.text = "\(timeReadingPickerData[row])"
-        
-//        if component == 0 || component == 1 || component == 2 {
-//            timeReadingLabel.text = "\(row) horas \(row) min \(row) sec"
-//        } else if component == 0 {
-//            timeReadingLabel.text = "\(row) horas"
-//        } else if component == 1 {
-//            timeReadingLabel.text = "\(row) min"
-//        } else {
-//            timeReadingLabel.text =  "\(row) seg"
-//        }
-        
         if component == 0 {
             hour = timeReadingPickerData[component][row]
             timeReadingLabelHours.text = "\(row)h, "
@@ -66,9 +54,6 @@ extension NewBookTVC: UIPickerViewDelegate, UIPickerViewDataSource {
             secound = timeReadingPickerData[component][row]
             timeReadingLabelSecounds.text = "\(row)s"
         }
-        
-        
-        
         
         
     }

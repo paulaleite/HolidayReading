@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1ED76F7222DE382400143660 /* ExtensionEditBookTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */; };
+		1ED76FA922DF97C600143660 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED76FA722DF97C600143660 /* Book+CoreDataClass.swift */; };
+		1ED76FAA22DF97C600143660 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED76FA822DF97C600143660 /* Book+CoreDataProperties.swift */; };
 		647809DC22D1156F00664CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647809DB22D1156F00664CA4 /* AppDelegate.swift */; };
 		647809E422D1156F00664CA4 /* HolidayReading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 647809E222D1156F00664CA4 /* HolidayReading.xcdatamodeld */; };
 		647809E622D1157100664CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647809E522D1157100664CA4 /* Assets.xcassets */; };
@@ -22,8 +25,6 @@
 		64780A2222D1816400664CA4 /* QuantitiesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64780A2122D1816400664CA4 /* QuantitiesTVCell.swift */; };
 		64780A2422D18A0500664CA4 /* PointsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64780A2322D18A0500664CA4 /* PointsTVCell.swift */; };
 		64ADBAC622DBAB2300391DF0 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADBAC522DBAB2300391DF0 /* RoundedImageView.swift */; };
-		64ADBACD22DBF2D300391DF0 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADBACB22DBF2D300391DF0 /* Book+CoreDataClass.swift */; };
-		64ADBACE22DBF2D300391DF0 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADBACC22DBF2D300391DF0 /* Book+CoreDataProperties.swift */; };
 		64ADBAD322DC202E00391DF0 /* UpdatePagesReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADBAD122DC202E00391DF0 /* UpdatePagesReadVC.swift */; };
 		64ADBAD422DC202E00391DF0 /* UpdatePagesReadVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64ADBAD222DC202E00391DF0 /* UpdatePagesReadVC.xib */; };
 		64CEED0222D514F10095C93D /* NewBookTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CEED0122D514F10095C93D /* NewBookTVC.swift */; };
@@ -50,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionEditBookTVC.swift; sourceTree = "<group>"; };
+		1ED76FA722DF97C600143660 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1ED76FA822DF97C600143660 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		647809D822D1156F00664CA4 /* HolidayReading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolidayReading.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		647809DB22D1156F00664CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		647809E322D1156F00664CA4 /* HolidayReading.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HolidayReading.xcdatamodel; sourceTree = "<group>"; };
@@ -71,8 +75,6 @@
 		64780A2122D1816400664CA4 /* QuantitiesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitiesTVCell.swift; sourceTree = "<group>"; };
 		64780A2322D18A0500664CA4 /* PointsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTVCell.swift; sourceTree = "<group>"; };
 		64ADBAC522DBAB2300391DF0 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
-		64ADBACB22DBF2D300391DF0 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataClass.swift"; path = "../../Book+CoreDataClass.swift"; sourceTree = "<group>"; };
-		64ADBACC22DBF2D300391DF0 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "../../Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		64ADBAD122DC202E00391DF0 /* UpdatePagesReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePagesReadVC.swift; sourceTree = "<group>"; };
 		64ADBAD222DC202E00391DF0 /* UpdatePagesReadVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UpdatePagesReadVC.xib; path = ../Controller/UpdatePagesReadVC.xib; sourceTree = "<group>"; };
 		64CEED0122D514F10095C93D /* NewBookTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewBookTVC.swift; path = ../NewBookTVC.swift; sourceTree = "<group>"; };
@@ -174,10 +176,11 @@
 		64780A1C22D12BDE00664CA4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				64E970FF22DD3412001335D0 /* ExtensionNewBookTVC.swift */,
 				64780A1822D1267C00664CA4 /* MyBooksTVC.swift */,
 				64CEED0122D514F10095C93D /* NewBookTVC.swift */,
+				64E970FF22DD3412001335D0 /* ExtensionNewBookTVC.swift */,
 				64E039DD22D8E2F300AD6B2E /* EditBookTVC.swift */,
+				1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */,
 				64ADBAD122DC202E00391DF0 /* UpdatePagesReadVC.swift */,
 			);
 			path = Controller;
@@ -198,8 +201,8 @@
 		64780A1E22D12BF700664CA4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				64ADBACB22DBF2D300391DF0 /* Book+CoreDataClass.swift */,
-				64ADBACC22DBF2D300391DF0 /* Book+CoreDataProperties.swift */,
+				1ED76FA722DF97C600143660 /* Book+CoreDataClass.swift */,
+				1ED76FA822DF97C600143660 /* Book+CoreDataProperties.swift */,
 				647809E222D1156F00664CA4 /* HolidayReading.xcdatamodeld */,
 			);
 			path = Model;
@@ -341,8 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64ADBACD22DBF2D300391DF0 /* Book+CoreDataClass.swift in Sources */,
-				64ADBACE22DBF2D300391DF0 /* Book+CoreDataProperties.swift in Sources */,
+				1ED76F7222DE382400143660 /* ExtensionEditBookTVC.swift in Sources */,
 				64780A1B22D12BC600664CA4 /* MyBooksTVCell.swift in Sources */,
 				64780A1922D1267C00664CA4 /* MyBooksTVC.swift in Sources */,
 				64E039DE22D8E2F400AD6B2E /* EditBookTVC.swift in Sources */,
@@ -352,7 +354,9 @@
 				647809DC22D1156F00664CA4 /* AppDelegate.swift in Sources */,
 				64780A2422D18A0500664CA4 /* PointsTVCell.swift in Sources */,
 				64E9710022DD3412001335D0 /* ExtensionNewBookTVC.swift in Sources */,
+				1ED76FA922DF97C600143660 /* Book+CoreDataClass.swift in Sources */,
 				64ADBAD322DC202E00391DF0 /* UpdatePagesReadVC.swift in Sources */,
+				1ED76FAA22DF97C600143660 /* Book+CoreDataProperties.swift in Sources */,
 				64ADBAC622DBAB2300391DF0 /* RoundedImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -37,6 +37,7 @@ class MyBooksTVC: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        
         do {
             guard let context = context else { return }
             books = try context.fetch(Book.fetchRequest())
@@ -48,11 +49,12 @@ class MyBooksTVC: UITableViewController {
         if books.count == 0 {
             noBooksImage.isHidden = false
             self.navigationItem.leftBarButtonItem?.isEnabled = false
-//            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clear
         } else {
             noBooksImage.isHidden = true
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         }
+        
+        updateBook()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,7 +65,7 @@ class MyBooksTVC: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "bookInfo") as? MyBooksTVCell {
             cell.bookTitle.text = books[indexPath.row].bookName
             cell.numOfPages.text = "\(books[indexPath.row].pagesRead) de \(books[indexPath.row].numOfPages)"
-            cell.timeLeft.text = "12 dias"
+            cell.timeLeft.text = String(format: "%.2f dias", (books[indexPath.row].amountOfTimeLeft) * 1.15741e-5)
             cell.bookImage.image = UIImage(named: "placeholder")
             cell.updatePagesReadButton.tag = indexPath.row
             cell.updatePagesReadButton.addTarget(self, action: #selector(updatePagesRead(_:)), for: .touchUpInside)
@@ -119,8 +121,28 @@ class MyBooksTVC: UITableViewController {
         updatePagesReadVC.modalPresentationStyle = .custom
         updatePagesReadVC.modalTransitionStyle = .crossDissolve
         updatePagesReadVC.book = books[selectedBookIndex]
+        updatePagesReadVC.MainTVC = self
         
         present(updatePagesReadVC, animated: true, completion: nil)
+        
+    }
+    
+    func updateBook() {
+        do {
+            guard let context = context else { return }
+            books = try context.fetch(Book.fetchRequest())
+            tableView.reloadData()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        if books.count == 0 {
+            noBooksImage.isHidden = false
+            self.navigationItem.leftBarButtonItem?.isEnabled = false
+        } else {
+            noBooksImage.isHidden = true
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

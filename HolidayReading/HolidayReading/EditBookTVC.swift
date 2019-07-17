@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EditBookTVC: UITableViewController {
     
@@ -14,30 +15,99 @@ class EditBookTVC: UITableViewController {
     
     @IBOutlet weak var pagesLabel: UILabel!
     
-    @IBOutlet var timeOfReadingPerDayLabel: UILabel!
+    @IBOutlet var timeOfReadingPerDayLabelHour: UILabel!
+    
+    @IBOutlet var timeOfReadingPerDayLabelMinute: UILabel!
+    
+    @IBOutlet var timeOfReadingPerDayLabelSecound: UILabel!
     
     @IBOutlet var timeOfReadingPerDayPicker: UIPickerView!
     
     @IBOutlet var timeOfReadingLabel: UILabel!
     
-    @IBOutlet var timeOfReadingPicker: UIPickerView!
+    @IBOutlet var timeOfReadingPicker: UIDatePicker!
     
     @IBOutlet var limitOfReadingLabel: UILabel!
     
-    @IBOutlet var limitOfReadingPicker: UIPickerView!
+    @IBOutlet var limitOfReadingPicker: UIDatePicker!
     
     @IBOutlet var readingUpdateButton: UIButton!
     
     var areCellsExpanded = [false, false, false]
     
+    var timeOfReadingPerDayPickerData: [[String]] = [[String]]()
+    
+    var hour: String = ""
+    var minutes: String = ""
+    var secound: String = ""
+    
     var book: Book?
+    
+    var MainTVC: MyBooksTVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Amount of Time Picker
+        self.timeOfReadingPerDayPicker.delegate = self
+        self.timeOfReadingPerDayPicker.dataSource = self
+        timeOfReadingPerDayPickerData = [["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+                                         ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
+                                          "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
+                                          "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"],
+                                         ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
+                                          "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
+                                          "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]]
+        
+        // Code #3 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
+        // Date Picker
+//        limitOfReadingPicker?.datePickerMode = .date
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+//        limitOfReadingLabel.text = dateFormatter.string(from: limitOfReadingPicker.date)
+//        limitOfReadingPicker?.addTarget(self, action: #selector(dateChanged(limitOfReadingPicker:)), for: .valueChanged)
+//
+//        // Time Picker
+//        timeOfReadingPicker?.datePickerMode = .time
+//        let timeFormatter = DateFormatter()
+//        timeFormatter.timeStyle = .short
+//        timeOfReadingLabel.text = timeFormatter.string(from: timeOfReadingPicker.date)
+//        timeOfReadingPicker?.addTarget(self, action: #selector(timeChanged(timeOfReadingPicker:)), for: .valueChanged)
+        
+        // Footer
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        //print(book)
+        if let book = book {
+            timeOfReadingPerDayLabelHour.text = "\(book.amountOfReadingTimeHour)h, "
+            timeOfReadingPerDayLabelMinute.text = "\(book.amountOfReadingTimeMinute)m, "
+            timeOfReadingPerDayLabelSecound.text = "\(book.amountOfReadingTimeSecound)s"
+            // Time Picker
+            timeOfReadingPicker?.datePickerMode = .time
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = .short
+            timeOfReadingLabel.text = timeFormatter.string(from: (book.timeOfReading)! as Date)
+            timeOfReadingPicker?.addTarget(self, action: #selector(timeChanged(timeOfReadingPicker:)), for: .valueChanged)
+            // Date Picker
+            limitOfReadingPicker?.datePickerMode = .date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+            limitOfReadingLabel.text = dateFormatter.string(from: (book.limitDataOfReading)! as Date)
+            limitOfReadingPicker?.addTarget(self, action: #selector(dateChanged(limitOfReadingPicker:)), for: .valueChanged)
+        }
+    }
+    
+    // Code #4 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
+    @objc func dateChanged(limitOfReadingPicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        limitOfReadingLabel.text = dateFormatter.string(from: limitOfReadingPicker.date)
+    }
+    
+    // Code #5 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
+    @objc func timeChanged(timeOfReadingPicker: UIDatePicker) {
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        timeOfReadingLabel.text = timeFormatter.string(from: timeOfReadingPicker.date)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -63,5 +133,28 @@ class EditBookTVC: UITableViewController {
             return areCellsExpanded[indexPath.row] == true ? 212 : 44
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+       
+        guard let numOfHours = Int64(timeOfReadingPerDayPickerData[0][timeOfReadingPerDayPicker.selectedRow(inComponent: 0)]) else { return }
+        book?.amountOfReadingTimeHour = numOfHours
+        
+        guard let numOfMinutes = Int64(timeOfReadingPerDayPickerData[1][timeOfReadingPerDayPicker.selectedRow(inComponent: 1)]) else { return }
+        book?.amountOfReadingTimeMinute = numOfMinutes
+        
+        guard let numOfSecound = Int64(timeOfReadingPerDayPickerData[2][timeOfReadingPerDayPicker.selectedRow(inComponent: 2)]) else { return }
+        book?.amountOfReadingTimeSecound = numOfSecound
+        
+        book?.timeOfReading = timeOfReadingPicker.date as NSDate
+        
+        book?.limitDataOfReading = limitOfReadingPicker.date as NSDate
+        
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        MainTVC?.updateBook()
+        
+    }
+    
 
 }

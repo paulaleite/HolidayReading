@@ -37,8 +37,6 @@ class NewBookTVC: UITableViewController {
     
     var context: NSManagedObjectContext?
     
-    var bookTitle: String!
-    
     var timeReadingPickerData: [[String]] = [[String]]()
     
     var hour: String = ""
@@ -79,7 +77,6 @@ class NewBookTVC: UITableViewController {
         timeOfReadingLabel.text = timeFormatter.string(from: timeOfReadingPicker.date)
         timeOfReadingPicker?.addTarget(self, action: #selector(timeChanged(timeOfReadingPicker:)), for: .valueChanged)
         
-        
         // Way of closing the keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -106,31 +103,49 @@ class NewBookTVC: UITableViewController {
     
     @objc func save() {
         
-        var newNumOfPages: Int = 0
-        
         guard let context = context else { return }
         guard let book = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context) as? Book else { return }
+        navigationController?.popViewController(animated: true)
         
-        if bookNameTextField.text != nil, bookNameTextField.text!.count > 0 {
-            bookTitle = bookNameTextField.text!
-        }
-        let newBookTitle = bookTitle
-        
-        if numberOfPagesTextField.text != nil, numberOfPagesTextField.text!.count > 0, let num = Int(numberOfPagesTextField.text!) {
-            newNumOfPages = num
+        if bookNameTextField.text != nil {
+            book.bookName = bookNameTextField.text
         }
         
-        book.bookName = newBookTitle
-        book.numOfPages = Int64(newNumOfPages)
-        book.amountOfReadingTime = 12.2
-        book.limitOfReading = NSDate()
-        book.readingSchedule = NSDate()
         book.pagesRead = 0
+        
+        if numberOfPagesTextField.text!.count > 0 {
+            guard let numOfPages = Float(numberOfPagesTextField.text!) else { return }
+            book.numOfPages = Float(numOfPages)
+        } else {
+            return
+        }
+        
+        // Code #7 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
+        book.timeOfReading = timeOfReadingPicker.date as NSDate
+        
+        // Code #7 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
+        book.limitDataOfReading = limitReadingPicker.date as NSDate
+        //book.timeOfReading = timeOfReadingPicker.date.timeIntervalSince1970
+        
+        // Code #8 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
+        let amountOfTime = limitReadingPicker.date.timeIntervalSince(Date())
+        book.amountOfTimeLeft = amountOfTime
+        
+        guard let numOfHours = Int64(timeReadingPickerData[0][timeReadingPicker.selectedRow(inComponent: 0)]) else { return }
+        book.amountOfReadingTimeHour = numOfHours
+        
+        guard let numOfMinutes = Int64(timeReadingPickerData[1][timeReadingPicker.selectedRow(inComponent: 1)]) else { return }
+        book.amountOfReadingTimeMinute = numOfMinutes
+        
+        guard let numOfSecound = Int64(timeReadingPickerData[2][timeReadingPicker.selectedRow(inComponent: 2)]) else { return }
+        book.amountOfReadingTimeSecound = numOfSecound
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
-        navigationController?.popViewController(animated: true)
+        
     }
+    
+
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section >= 1 {

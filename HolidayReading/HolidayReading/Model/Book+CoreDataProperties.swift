@@ -2,7 +2,7 @@
 //  Book+CoreDataProperties.swift
 //  HolidayReading
 //
-//  Created by Paula Leite on 16/07/19.
+//  Created by Paula Leite on 17/07/19.
 //  Copyright © 2019 Paula Torales Leite. All rights reserved.
 //
 //
@@ -17,15 +17,14 @@ extension Book {
         return NSFetchRequest<Book>(entityName: "Book")
     }
 
-    @NSManaged public var amountOfReadingTimeHour: Double
+    @NSManaged public var amountOfReadingTimeHour: Int64
+    @NSManaged public var amountOfReadingTimeMinute: Int64
+    @NSManaged public var amountOfReadingTimeSecound: Int64
+    @NSManaged public var amountOfTimeLeft: Double
     @NSManaged public var bookName: String?
-    @NSManaged public var numOfPages: Int64
-    @NSManaged public var pagesRead: Int64
-    @NSManaged public var id: String?
-    @NSManaged public var amountOfReadingTimeMinute: Double
-    @NSManaged public var amountOfReadingTimeSecound: Double
-    @NSManaged public var amountOfTimeLeft: Int64
     @NSManaged public var limitDataOfReading: NSDate?
+    @NSManaged public var numOfPages: Float
+    @NSManaged public var pagesRead: Float
     @NSManaged public var timeOfReading: NSDate?
 
 }
