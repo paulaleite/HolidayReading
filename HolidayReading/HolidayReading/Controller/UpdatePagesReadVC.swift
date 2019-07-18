@@ -23,6 +23,12 @@ class UpdatePagesReadVC: UIViewController {
     
     let increments: Float = 1
     
+    @IBOutlet var addButton: UIButton! {
+        didSet {
+            addButton.layer.cornerRadius = 10
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

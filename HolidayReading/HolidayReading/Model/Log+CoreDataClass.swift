@@ -1,5 +1,5 @@
 //
-//  Book+CoreDataClass.swift
+//  Log+CoreDataClass.swift
 //  HolidayReading
 //
 //  Created by Paula Leite on 18/07/19.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Book)
-public class Book: NSManagedObject {
+@objc(Log)
+public class Log: NSManagedObject {
 
 }

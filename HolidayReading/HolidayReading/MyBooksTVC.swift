@@ -64,8 +64,8 @@ class MyBooksTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "bookInfo") as? MyBooksTVCell {
             cell.bookTitle.text = books[indexPath.row].bookName
-            cell.numOfPages.text = "\(books[indexPath.row].pagesRead) de \(books[indexPath.row].numOfPages)"
-            cell.timeLeft.text = String(format: "%.2f dias", (books[indexPath.row].amountOfTimeLeft) * 1.15741e-5)
+            cell.numOfPages.text = "\(Int(books[indexPath.row].pagesRead)) de \(Int(books[indexPath.row].numOfPages))"
+            cell.timeLeft.text = "\(Int((books[indexPath.row].amountOfTimeLeft) * 1.15741e-5)) dias"
             cell.bookImage.image = UIImage(named: "placeholder")
             cell.updatePagesReadButton.tag = indexPath.row
             cell.updatePagesReadButton.addTarget(self, action: #selector(updatePagesRead(_:)), for: .touchUpInside)

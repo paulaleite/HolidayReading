@@ -49,7 +49,9 @@ extension EditBookTVC: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if component == 2 {
             secound = timeOfReadingPerDayPickerData[component][row]
             timeOfReadingPerDayLabelSecound.text = "\(row)s"
-        }        
+        }
+        
+       
         
     }
     

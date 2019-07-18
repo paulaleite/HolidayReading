@@ -11,9 +11,12 @@ import CoreData
 
 class EditBookTVC: UITableViewController {
     
-    @IBOutlet weak var pagesProgressView: UIProgressView!
+    
+    @IBOutlet var pagesProgressBar: ProgressBarView!
     
     @IBOutlet weak var pagesLabel: UILabel!
+    
+    @IBOutlet var daysReadingLabel: UILabel!
     
     @IBOutlet var timeOfReadingPerDayLabelHour: UILabel!
     
@@ -43,7 +46,11 @@ class EditBookTVC: UITableViewController {
     
     var book: Book?
     
+    var log: Log?
+    
     var MainTVC: MyBooksTVC?
+    
+    var isInEditingMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,41 +66,44 @@ class EditBookTVC: UITableViewController {
                                           "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
                                           "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]]
         
-        // Code #3 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
-        // Date Picker
-//        limitOfReadingPicker?.datePickerMode = .date
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
-//        limitOfReadingLabel.text = dateFormatter.string(from: limitOfReadingPicker.date)
-//        limitOfReadingPicker?.addTarget(self, action: #selector(dateChanged(limitOfReadingPicker:)), for: .valueChanged)
-//
-//        // Time Picker
-//        timeOfReadingPicker?.datePickerMode = .time
-//        let timeFormatter = DateFormatter()
-//        timeFormatter.timeStyle = .short
-//        timeOfReadingLabel.text = timeFormatter.string(from: timeOfReadingPicker.date)
-//        timeOfReadingPicker?.addTarget(self, action: #selector(timeChanged(timeOfReadingPicker:)), for: .valueChanged)
-        
         // Footer
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         if let book = book {
+            
             timeOfReadingPerDayLabelHour.text = "\(book.amountOfReadingTimeHour)h, "
+            timeOfReadingPerDayPicker.selectRow(Int(book.amountOfReadingTimeHour), inComponent: 0, animated: true)
             timeOfReadingPerDayLabelMinute.text = "\(book.amountOfReadingTimeMinute)m, "
+            timeOfReadingPerDayPicker.selectRow(Int(book.amountOfReadingTimeMinute), inComponent: 1, animated: true)
             timeOfReadingPerDayLabelSecound.text = "\(book.amountOfReadingTimeSecound)s"
+            timeOfReadingPerDayPicker.selectRow(Int(book.amountOfReadingTimeSecound), inComponent: 2, animated: true)
             // Time Picker
             timeOfReadingPicker?.datePickerMode = .time
+            timeOfReadingPicker.setDate((book.timeOfReading)! as Date, animated: true)
             let timeFormatter = DateFormatter()
             timeFormatter.timeStyle = .short
             timeOfReadingLabel.text = timeFormatter.string(from: (book.timeOfReading)! as Date)
             timeOfReadingPicker?.addTarget(self, action: #selector(timeChanged(timeOfReadingPicker:)), for: .valueChanged)
             // Date Picker
             limitOfReadingPicker?.datePickerMode = .date
+            limitOfReadingPicker.setDate((book.limitDataOfReading)! as Date, animated: true)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
             limitOfReadingLabel.text = dateFormatter.string(from: (book.limitDataOfReading)! as Date)
             limitOfReadingPicker?.addTarget(self, action: #selector(dateChanged(limitOfReadingPicker:)), for: .valueChanged)
+            // Progress Bar
+//            self.pagesProgressBar.lineWidth = 5.0
+//            pagesProgressBar.progressValue = CGFloat(book.pagesRead)
+            self.pagesProgressBar.progressValue = CGFloat(book.pagesRead/book.numOfPages)
+            pagesLabel.text = "\(Int(book.pagesRead))"
+            
+            
+            //daysReadingLabel.text +=
+            
         }
+        
+        readingUpdateButton.layer.cornerRadius = 10
+        
     }
     
     // Code #4 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
@@ -134,26 +144,77 @@ class EditBookTVC: UITableViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-       
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 200))
+        
+        if section == 0 {
+            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.size.width, height: 50))
+            headerLabel.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+            headerLabel.text = "Informações"
+            headerLabel.textAlignment = .left
+            headerView.addSubview(headerLabel)
+
+        } else if section == 1 {
+            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.size.width, height: 50))
+            headerLabel.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+            headerLabel.text = "Editáveis"
+            headerLabel.textAlignment = .left
+            headerView.addSubview(headerLabel)
+            
+            let addButton = CustomButton(type: .custom)
+            addButton.id = section
+            addButton.setTitle(isInEditingMode ? "Adicionar" : "Adicionar", for: .normal)
+            addButton.titleLabel?.font = UIFont(name: "SF-Pro-Display-Regular", size: 17)
+            addButton.addTarget(self, action: #selector(saveInformation), for: .touchUpInside)
+            addButton.setTitleColor(#colorLiteral(red: 0.2549019608, green: 0.231372549, blue: 0.537254902, alpha: 1), for: .normal)
+            addButton.titleLabel?.textAlignment = .right
+            headerView.addSubview(addButton)
+            
+            addButton.translatesAutoresizingMaskIntoConstraints = false
+            addButton.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: 0).isActive = true
+            addButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
+            addButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            
+            let tapPress = UITapGestureRecognizer(target: self, action: #selector(tapped))
+            view.addGestureRecognizer(tapPress)
+            tapPress.cancelsTouchesInView = false
+        } else {
+            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        
+        
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    @objc func tapped() {
+        isInEditingMode = !isInEditingMode
+    }
+    
+    
+    @objc func saveInformation() {
         guard let numOfHours = Int64(timeOfReadingPerDayPickerData[0][timeOfReadingPerDayPicker.selectedRow(inComponent: 0)]) else { return }
         book?.amountOfReadingTimeHour = numOfHours
-        
+    
         guard let numOfMinutes = Int64(timeOfReadingPerDayPickerData[1][timeOfReadingPerDayPicker.selectedRow(inComponent: 1)]) else { return }
         book?.amountOfReadingTimeMinute = numOfMinutes
-        
+    
         guard let numOfSecound = Int64(timeOfReadingPerDayPickerData[2][timeOfReadingPerDayPicker.selectedRow(inComponent: 2)]) else { return }
         book?.amountOfReadingTimeSecound = numOfSecound
-        
+    
         book?.timeOfReading = timeOfReadingPicker.date as NSDate
-        
+    
         book?.limitDataOfReading = limitOfReadingPicker.date as NSDate
-        
-        
+    
+    
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
+    
         MainTVC?.updateBook()
-        
     }
     
 

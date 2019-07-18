@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdatePagesReadVC" customModule="HolidayReading" customModuleProvider="target">
             <connections>
+                <outlet property="addButton" destination="0AX-nI-jTo" id="oHR-ih-eek"/>
                 <outlet property="amountOfPagesLabel" destination="qEf-o8-gsP" id="2mC-8S-lpH"/>
                 <outlet property="amountOfPagesSlider" destination="Yn7-Kc-o9x" id="BrW-OS-kLV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -58,7 +59,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="mUV-bq-A5q"/>
                             </constraints>
-                            <state key="normal" title="Button">
+                            <state key="normal" title="Atualizar">
                                 <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>

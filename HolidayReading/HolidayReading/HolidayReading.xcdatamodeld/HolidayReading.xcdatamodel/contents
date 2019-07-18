@@ -11,7 +11,15 @@
         <attribute name="pagesRead" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timeOfReading" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
+    <entity name="Log" representedClassName="Log" syncable="YES">
+        <attribute name="amountOfBooksReadCounter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="amountOfMinutesReadCounter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="amoutOfDaysReadCounter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="amoutOfPagesReadCounter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalAmountOfPagesReadCounter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Book" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="Log" positionX="-63" positionY="45" width="128" height="120"/>
     </elements>
 </model>
