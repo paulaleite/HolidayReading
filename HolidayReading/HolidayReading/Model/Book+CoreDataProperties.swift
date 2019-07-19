@@ -2,7 +2,7 @@
 //  Book+CoreDataProperties.swift
 //  HolidayReading
 //
-//  Created by Paula Leite on 18/07/19.
+//  Created by Paula Leite on 19/07/19.
 //  Copyright © 2019 Paula Torales Leite. All rights reserved.
 //
 //
@@ -26,5 +26,8 @@ extension Book {
     @NSManaged public var numOfPages: Float
     @NSManaged public var pagesRead: Float
     @NSManaged public var timeOfReading: NSDate?
+    @NSManaged public var timesRead: Int64
+    @NSManaged public var lastDayThatRead: NSDate?
+    @NSManaged public var image: NSDate?
 
 }

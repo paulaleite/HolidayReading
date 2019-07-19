@@ -140,6 +140,10 @@ class NewBookTVC: UITableViewController {
         guard let numOfSecound = Int64(timeReadingPickerData[2][timeReadingPicker.selectedRow(inComponent: 2)]) else { return }
         book.amountOfReadingTimeSecound = numOfSecound
         
+        book.lastDayThatRead = nil
+        
+        book.timesRead = 0
+        
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         
@@ -175,6 +179,14 @@ class NewBookTVC: UITableViewController {
         self.view.endEditing(true)
     }
     
+//    @IBAction func chooseImage(_ sender: Any) {
+//        
+//        ChooseImage().imageSelector(self) { bookImageView in
+//            self.bookImageView.image = bookImageView
+//        }
+//        
+//        
+//    }
     
     
 

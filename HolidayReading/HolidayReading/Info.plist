@@ -48,5 +48,9 @@
 		<string>SF-Pro-Display-Light.otf</string>
 		<string>SF-Pro-Display-Medium.otf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Allows the user to take a photo to use in the App</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allows the user to choose a photo from their Photo Library to use in the App</string>
 </dict>
 </plist>

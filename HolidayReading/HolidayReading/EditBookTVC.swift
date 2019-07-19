@@ -46,7 +46,7 @@ class EditBookTVC: UITableViewController {
     
     var book: Book?
     
-    var log: Log?
+    var books: [Book]?
     
     var MainTVC: MyBooksTVC?
     
@@ -98,7 +98,7 @@ class EditBookTVC: UITableViewController {
             pagesLabel.text = "\(Int(book.pagesRead))"
             
             
-            //daysReadingLabel.text +=
+            daysReadingLabel.text = "\(calcTotalOfDaysRead(from: book))"
             
         }
         
@@ -151,6 +151,7 @@ class EditBookTVC: UITableViewController {
             headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.size.width, height: 50))
             headerLabel.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+            //headerLabel.
             headerLabel.text = "Informações"
             headerLabel.textAlignment = .left
             headerView.addSubview(headerLabel)
@@ -215,6 +216,17 @@ class EditBookTVC: UITableViewController {
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
     
         MainTVC?.updateBook()
+    }
+    
+    func calcTotalOfDaysRead(from book: Book?) -> Int64 {
+        var amountOfDaysRead: Int64 = 10
+        
+        guard let book = book else { return 0 }
+        
+        // preciso saber quantas vezes o usuario inseriu uma quantidade de paginas
+        amountOfDaysRead = book.timesRead
+        
+        return amountOfDaysRead
     }
     
 

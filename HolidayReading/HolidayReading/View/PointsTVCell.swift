@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class PointsTVCell: UITableViewCell {
     
-    @IBOutlet weak var amountOfPoints: UILabel! // I need to adapt this number
+    @IBOutlet weak var amountOfPoints: UILabel!
     
     @IBOutlet weak var pointsLabel:UILabel!
     

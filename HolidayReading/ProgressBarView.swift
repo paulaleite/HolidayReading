@@ -27,7 +27,7 @@ class ProgressBarView: UIView {
     }
     
     @IBInspectable
-    var lineColor:UIColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1) {
+    var lineColor:UIColor = #colorLiteral(red: 0.8171664593, green: 0.8280336185, blue: 0.8606350959, alpha: 1) {
         didSet {
             setNeedsDisplay()
         }

@@ -59,6 +59,41 @@ class UpdatePagesReadVC: UIViewController {
         
         dismissVC()
         
+        guard let test = (book?.lastDayThatRead?.isEqual(to: Date())) else { return }
+        if book?.lastDayThatRead == nil {
+            book?.lastDayThatRead = NSDate()
+        } else if book?.lastDayThatRead != NSDate() {
+            if !(test) {
+                book?.timesRead += 1
+            }
+        }
+        
+        
+        let currentCalendar = Calendar.autoupdatingCurrent
+        let currentComponents = currentCalendar.dateComponents([.day, .month, .year], from: Date())
+        let currentDay = currentComponents.day
+        let currentMonth = currentComponents.month
+        let currentYear = currentComponents.year
+        
+        guard let date = book?.lastDayThatRead! as Date? else { return }
+        let calendar = Calendar.autoupdatingCurrent
+        let components = calendar.dateComponents([.day, .month, .year], from: date)
+        let day = components.day
+        let month = components.month
+        let year = components.year
+
+        
+        if day == nil && month == nil && year == nil {
+            book?.lastDayThatRead = NSDate()
+        } else if day != currentDay || month != currentMonth || year != currentYear {
+            
+            book?.lastDayThatRead = NSDate()
+            book?.timesRead += 1
+        }
+        
+    
+        
+        
     }
     
     // Code #10 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
@@ -68,7 +103,7 @@ class UpdatePagesReadVC: UIViewController {
         let roundedValue = round(amountOfPagesSlider.value / increments) * increments
         amountOfPagesSlider.value = roundedValue
         
-        amountOfPagesLabel.text = "\(amountOfPagesSlider.value)"
+        amountOfPagesLabel.text = "\(Int(amountOfPagesSlider.value))"
     }
     
 }
