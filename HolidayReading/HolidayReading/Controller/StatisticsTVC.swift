@@ -24,6 +24,8 @@ class StatisticsTVC: UITableViewController {
     var books: [Book] = []
     //var book: Book?
     
+    var points: Points?
+    
     var context: NSManagedObjectContext?
 
     override func viewDidLoad() {
@@ -42,7 +44,6 @@ class StatisticsTVC: UITableViewController {
             print(error.localizedDescription)
         }
         
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +51,18 @@ class StatisticsTVC: UITableViewController {
         amountOfPagesReadLabel.text = "\(calcTotalOfPagesRead(from: books))"
         amountOfDaysReadLabel.text = "\(calcTotalOfDaysRead(from: books))"
         amountOfMinutesReadLabel.text = "\(calcTotalOfMinutesRead(from: books))"
+        
+        guard let context = context else { return }
+        guard let stats = NSEntityDescription.insertNewObject(forEntityName: "Points", into: context) as? Points else { return }
+        
+        stats.booksRead = calcTotalBooksRead(from: books)
+        stats.pagesRead = calcTotalOfPagesRead(from: books)
+        stats.daysRead = calcTotalOfDaysRead(from: books)
+        stats.minutesRead = calcTotalOfMinutesRead(from: books)
+        
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
     }
     
     func calcTotalBooksRead(from books: [Book?]?) -> Int64 {
