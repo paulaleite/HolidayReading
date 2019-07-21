@@ -10,113 +10,98 @@ import UIKit
 
 class ChooseImage: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    //Instância o controle do sistema de imagens
+    var book: Book?
+    
     var select = UIImagePickerController();
     
-    //Cria um alerta
     var alert = UIAlertController(title: "Escolha uma opção", message: nil, preferredStyle: .actionSheet)
     
-    //Cria um UIViewController
-    var viewController: UIViewController?
+    var tableViewController: UITableViewController?
     
-    //Cria um callback @escaping
+    // Creates  callback @escaping
     var callback : ((UIImage) -> ())?;
     
     
-    //Função principal
-    func imageSelector(_ viewController: UIViewController, _ retorno: @escaping ((UIImage) -> ())) {
+    // Main func
+    func imageSelector(_ tableViewController: UITableViewController, _ retorno: @escaping ((UIImage) -> ())) {
         
-        /* Declara o callback dessa funcao como sendo a variavel externa pickImageCallback,
-         isso serve para o retorno dessa funcao estar em outro metodo,
-         no caso, apos a escolha da imagem */
         callback = retorno;
         
-        //Declara o viewController como o passado como parâmetro, isso serve para as transições de tela.
-        self.viewController = viewController;
+        self.tableViewController = tableViewController;
         
-        //Cria uma ação que chama o método "openCamera"
         let camera = UIAlertAction(title: "Camera", style: .default){
             UIAlertAction in
             self.openCamera()
         }
-        //Cria uma acao que chama o método "abrirGaleria"
-        let galery = UIAlertAction(title: "Galery", style: .default){
+        let galery = UIAlertAction(title: "Galeria", style: .default){
             UIAlertAction in
             self.openGalery()
         }
         
-        //Cria uma outra ação
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel){
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel){
             UIAlertAction in
         }
         
-        //Declara que o novo delegate do piker são os métodos abaixo
         select.delegate = self
         
-        
-        // Adiciona ações ao alerta
         alert.addAction(camera)
         alert.addAction(galery)
         alert.addAction(cancel)
         
-        //Exibe o alerta na tela
-        alert.popoverPresentationController?.sourceView = self.viewController!.view
-        viewController.present(alert, animated: true, completion: nil)
+        alert.popoverPresentationController?.sourceView = self.tableViewController!.view
+        tableViewController.present(alert, animated: true, completion: nil)
     }
     
     
-    //Abre a câmera
+    // Opens Camera
     func openCamera(){
-        //Desfaz o alerta de seleção gerado anteriormente
+       
         alert.dismiss(animated: true, completion: nil)
         
-        //Aqui verificamos se temos a permissão para acessar a câmera
+        // Checks permission for opening the Camera
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){
-            //Define o tipo que queremos selecionar como a câmera
+            
             select.sourceType = .camera
-            //Vai para a tela da câmera
-            self.viewController?.present(select, animated: true, completion: nil)
+            // Camera
+            self.tableViewController?.present(select, animated: true, completion: nil)
         } else {
-            //Gera alerta se a pessoa não possue câmera no dispositivo ou caso você rode em um simulador.
+        
             let alert = UIAlertController(title: "Alert", message: "You don't have a camera", preferredStyle: .actionSheet)
-            //Cria uma outra ação
+            
             let cancel = UIAlertAction(title: "Cancel", style: .cancel){
                 UIAlertAction in
             }
-            //Mostra alerta
+           
             alert.addAction(cancel)
-            self.viewController?.present(alert, animated: true, completion: nil)
+            self.tableViewController?.present(alert, animated: true, completion: nil)
         }
     }
     
     
-    //Abre a Galeria
+    // Opens the Galary
     func openGalery(){
-        //Desfaz o alerta gerado
         alert.dismiss(animated: true, completion: nil)
         
-        //Por default o tipo de abertura do selecionador em cena é a Galeria
         select.sourceType = .photoLibrary
         
-        //Vai para a tela da Galeria
-        self.viewController?.present(select, animated: true, completion: nil)
+        // Galary
+        self.tableViewController?.present(select, animated: true, completion: nil)
     }
     
     
-    //Metodo chamado quando a pessoa cancela a escolha
+    // Cancel choise
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //Desfaz a tela da Galeria que foi gerada
+        
         picker.dismiss(animated: true, completion: nil)
     }
     
     
-    //Metodo chamado quando a pessoa escolhe uma imagem
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    // Function called when the user chooses an image
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        //Desfaz a tela da Galeria que foi gerada
         picker.dismiss(animated: true, completion: nil)
         
-        //Verifica o arquivo averto é realmente uma imagem
+        // Checks if the opened file is an image
         guard let image = info[.originalImage] as? UIImage else {
             fatalError("An image was expected: \(info)")
         }
@@ -126,8 +111,7 @@ class ChooseImage: NSObject, UIImagePickerControllerDelegate, UINavigationContro
             print("jpg error")
             return
         }
-        
-        //Book.image = imageData as NSData
+        book?.image = imageData as NSData
         
         //Retorna o callback da função principal
         callback?(image)

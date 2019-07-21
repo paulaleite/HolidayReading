@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let noImage = NSData()
+
 class NewBookTVC: UITableViewController {
 
     @IBOutlet var bookImageView: UIImageView!
@@ -42,6 +44,9 @@ class NewBookTVC: UITableViewController {
     var hour: String = ""
     var minutes: String = ""
     var secound: String = ""
+    
+    var book: Book?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +90,8 @@ class NewBookTVC: UITableViewController {
         // Footer
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+
+        
     }
     
     // Code #4 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
@@ -104,47 +111,79 @@ class NewBookTVC: UITableViewController {
     @objc func save() {
         
         guard let context = context else { return }
-        guard let book = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context) as? Book else { return }
-        navigationController?.popViewController(animated: true)
         
-        if bookNameTextField.text != nil {
-            book.bookName = bookNameTextField.text
-        }
+        var bookName: String = ""
+        var numPages: Float = 0
         
-        book.pagesRead = 0
-        
-        if numberOfPagesTextField.text!.count > 0 {
-            guard let numOfPages = Float(numberOfPagesTextField.text!) else { return }
-            book.numOfPages = Float(numOfPages)
+        if bookNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
+            guard let name = bookNameTextField.text else { return }
+            bookName = name
         } else {
             return
         }
         
-        // Code #7 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
-        book.timeOfReading = timeOfReadingPicker.date as NSDate
+        if numberOfPagesTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
+            guard let numOfPages = Float(numberOfPagesTextField.text!) else { return }
+            numPages = Float(numOfPages)
+        } else {
+            return
+        }
+        
+        guard let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context) as? Book else { return }
+        book = newBook
+        book?.bookName = bookName
+        
+        book?.numOfPages = numPages
+        
+        book?.pagesRead = 0
         
         // Code #7 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
-        book.limitDataOfReading = limitReadingPicker.date as NSDate
+        book?.timeOfReading = timeOfReadingPicker.date as NSDate
+        
+        // Code #7 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
+        book?.limitDataOfReading = limitReadingPicker.date as NSDate
         //book.timeOfReading = timeOfReadingPicker.date.timeIntervalSince1970
         
         // Code #8 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
         let amountOfTime = limitReadingPicker.date.timeIntervalSince(Date())
-        book.amountOfTimeLeft = amountOfTime
+        book?.amountOfTimeLeft = amountOfTime
         
         guard let numOfHours = Int64(timeReadingPickerData[0][timeReadingPicker.selectedRow(inComponent: 0)]) else { return }
-        book.amountOfReadingTimeHour = numOfHours
+        book?.amountOfReadingTimeHour = numOfHours
         
         guard let numOfMinutes = Int64(timeReadingPickerData[1][timeReadingPicker.selectedRow(inComponent: 1)]) else { return }
-        book.amountOfReadingTimeMinute = numOfMinutes
+        book?.amountOfReadingTimeMinute = numOfMinutes
         
         guard let numOfSecound = Int64(timeReadingPickerData[2][timeReadingPicker.selectedRow(inComponent: 2)]) else { return }
-        book.amountOfReadingTimeSecound = numOfSecound
+        book?.amountOfReadingTimeSecound = numOfSecound
         
-        book.lastDayThatRead = nil
+        book?.lastDayThatRead = NSDate()
         
-        book.timesRead = 0
+        book?.timesRead = 0
         
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        if bookImageView == UIImage(named: "placeholder") {
+            book?.image = noImage
+        } else {
+            guard let imageData = bookImageView.image?.jpegData(compressionQuality: 1.0) else {
+                print("jpg error")
+                return
+            }
+            book?.image = imageData as NSData
+        }
+        
+        
+        
+        //(UIApplication.shared.delegate as! AppDelegate).saveContext()
+        do {
+            try context.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.localizedDescription)")
+        }
+        
+        navigationController?.popViewController(animated: true)
         
         
     }
@@ -179,14 +218,14 @@ class NewBookTVC: UITableViewController {
         self.view.endEditing(true)
     }
     
-//    @IBAction func chooseImage(_ sender: Any) {
-//        
-//        ChooseImage().imageSelector(self) { bookImageView in
-//            self.bookImageView.image = bookImageView
-//        }
-//        
-//        
-//    }
+    @IBAction func chooseImage(_ sender: Any) {
+        let chooseImage = ChooseImage()
+        chooseImage.book = book
+        chooseImage.imageSelector(self) { bookImageView in
+            self.bookImageView.image = bookImageView
+        }
+        
+    }
     
     
 

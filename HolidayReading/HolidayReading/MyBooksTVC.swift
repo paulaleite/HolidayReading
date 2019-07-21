@@ -66,7 +66,14 @@ class MyBooksTVC: UITableViewController {
             cell.bookTitle.text = books[indexPath.row].bookName
             cell.numOfPages.text = "\(Int(books[indexPath.row].pagesRead)) de \(Int(books[indexPath.row].numOfPages))"
             cell.timeLeft.text = "\(Int((books[indexPath.row].amountOfTimeLeft) * 1.15741e-5)) dias"
-            //cell.bookImage.image = UIImage(named: "placeholder")
+            
+            if books[indexPath.row].image == noImage {
+                cell.bookImage.image = UIImage(named: "placeholder")
+            } else {
+                guard let data = books[indexPath.row].image as Data? else { return UITableViewCell()}
+                cell.bookImage.image = UIImage(data: data)
+            }
+            
             cell.updatePagesReadButton.tag = indexPath.row
             cell.updatePagesReadButton.addTarget(self, action: #selector(updatePagesRead(_:)), for: .touchUpInside)
             

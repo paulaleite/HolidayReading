@@ -59,14 +59,14 @@ class UpdatePagesReadVC: UIViewController {
         
         dismissVC()
         
-        guard let test = (book?.lastDayThatRead?.isEqual(to: Date())) else { return }
-        if book?.lastDayThatRead == nil {
-            book?.lastDayThatRead = NSDate()
-        } else if book?.lastDayThatRead != NSDate() {
-            if !(test) {
-                book?.timesRead += 1
-            }
-        }
+//        guard let test = (book?.lastDayThatRead?.isEqual(to: Date())) else { return }
+//        if book?.lastDayThatRead == nil {
+//            book?.lastDayThatRead = NSDate()
+//        } else if book?.lastDayThatRead != NSDate() {
+//            if !(test) {
+//                book?.timesRead += 1
+//            }
+//        }
         
         
         let currentCalendar = Calendar.autoupdatingCurrent
@@ -75,7 +75,7 @@ class UpdatePagesReadVC: UIViewController {
         let currentMonth = currentComponents.month
         let currentYear = currentComponents.year
         
-        guard let date = book?.lastDayThatRead! as Date? else { return }
+        guard let date = book?.lastDayThatRead as Date? else { return }
         let calendar = Calendar.autoupdatingCurrent
         let components = calendar.dateComponents([.day, .month, .year], from: date)
         let day = components.day
