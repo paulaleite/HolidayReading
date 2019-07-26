@@ -92,13 +92,11 @@ class EditBookTVC: UITableViewController {
             limitOfReadingLabel.text = dateFormatter.string(from: (book.limitDataOfReading)! as Date)
             limitOfReadingPicker?.addTarget(self, action: #selector(dateChanged(limitOfReadingPicker:)), for: .valueChanged)
             // Progress Bar
-//            self.pagesProgressBar.lineWidth = 5.0
-//            pagesProgressBar.progressValue = CGFloat(book.pagesRead)
             self.pagesProgressBar.progressValue = CGFloat(book.pagesRead/book.numOfPages)
             pagesLabel.text = "\(Int(book.pagesRead))"
             
             
-            daysReadingLabel.text = "\(calcTotalOfDaysRead(from: book))"
+            daysReadingLabel.text = "\(book.timesRead)"
             
         }
         
@@ -216,6 +214,15 @@ class EditBookTVC: UITableViewController {
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
     
         MainTVC?.updateBook()
+        
+        guard let bookID = book?.bookID else { return }
+        cancelNotification(forId: bookID, categoria: 0)
+        cancelNotification(forId: bookID, categoria: 1)
+        guard let readingHour = book?.amountOfReadingTimeHour, let readingMinute = book?.amountOfReadingTimeMinute, let readingSecound = book?.amountOfReadingTimeSecound, let bookName = book?.bookName else { return }
+        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!", categoria: 0)
+        
+        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?", categoria: 1)
+        
     }
     
     func calcTotalOfDaysRead(from book: Book?) -> Int64 {

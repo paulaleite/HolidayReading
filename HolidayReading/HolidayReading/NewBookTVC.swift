@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 let noImage = NSData()
 
@@ -89,8 +90,6 @@ class NewBookTVC: UITableViewController {
         // Footer
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-
-        
     }
     
     // Code #4 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
@@ -170,14 +169,20 @@ class NewBookTVC: UITableViewController {
             book?.image = imageData as NSData
         }
         
+        book?.bookID = UUID().uuidString
+        
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        // Notifications
+        guard let readingHour = book?.amountOfReadingTimeHour, let readingMinute = book?.amountOfReadingTimeMinute, let readingSecound = book?.amountOfReadingTimeSecound else { return }
+        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!", categoria: 0)
+        
+        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?", categoria: 1)
         
         navigationController?.popViewController(animated: true)
         
         
     }
-    
-
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section >= 1 {
@@ -215,7 +220,4 @@ class NewBookTVC: UITableViewController {
         }
         
     }
-    
-    
-
 }

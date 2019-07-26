@@ -19,9 +19,13 @@ class UpdatePagesReadVC: UIViewController {
     
     @IBOutlet var amountOfPagesLabel: UILabel!
     
+    @IBOutlet var bgView: UIView!
+    
     var context: NSManagedObjectContext?
     
     let increments: Float = 1
+    
+    var stats: [Statistics] = []
     
     @IBOutlet var addButton: UIButton! {
         didSet {
@@ -32,15 +36,25 @@ class UpdatePagesReadVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissVC))
-        self.view.addGestureRecognizer(tap)
-        tap.cancelsTouchesInView = false
+        bgView.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = true
         
         guard let numOfPages = book?.numOfPages else { return }
         guard let amountOfPages = book?.pagesRead else { return }
         amountOfPagesSlider.maximumValue = numOfPages - amountOfPages
         
         amountOfPagesSlider.minimumValue = 0
+        
+        do {
+            guard let context = context else { return }
+            stats = try context.fetch(Statistics.fetchRequest())
+
+        } catch let error {
+            print(error.localizedDescription)
+        }
         
     }
     
@@ -59,40 +73,33 @@ class UpdatePagesReadVC: UIViewController {
         
         dismissVC()
         
-//        guard let test = (book?.lastDayThatRead?.isEqual(to: Date())) else { return }
-//        if book?.lastDayThatRead == nil {
-//            book?.lastDayThatRead = NSDate()
-//        } else if book?.lastDayThatRead != NSDate() {
-//            if !(test) {
-//                book?.timesRead += 1
-//            }
-//        }
-        
-        
         let currentCalendar = Calendar.autoupdatingCurrent
         let currentComponents = currentCalendar.dateComponents([.day, .month, .year], from: Date())
         let currentDay = currentComponents.day
         let currentMonth = currentComponents.month
         let currentYear = currentComponents.year
         
-        guard let date = book?.lastDayThatRead as Date? else { return }
-        let calendar = Calendar.autoupdatingCurrent
-        let components = calendar.dateComponents([.day, .month, .year], from: date)
-        let day = components.day
-        let month = components.month
-        let year = components.year
+        if stats[0].lastDayRead != nil {
+            guard let date = stats[0].lastDayRead as Date? else { return }
+            let calendar = Calendar.autoupdatingCurrent
+            let components = calendar.dateComponents([.day, .month, .year], from: date)
+            let day = components.day
+            let month = components.month
+            let year = components.year
 
-        
-        if day == nil && month == nil && year == nil {
-            book?.lastDayThatRead = NSDate()
-        } else if day != currentDay || month != currentMonth || year != currentYear {
             
-            book?.lastDayThatRead = NSDate()
+            if day != currentDay || month != currentMonth || year != currentYear {
+                stats[0].lastDayRead = NSDate()
+                stats[0].daysRead += 1
+                book?.timesRead += 1
+            }
+        } else {
+            stats[0].lastDayRead = NSDate()
+            stats[0].daysRead += 1
             book?.timesRead += 1
         }
-        
     
-        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
     }
     

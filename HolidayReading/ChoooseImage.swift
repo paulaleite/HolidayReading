@@ -111,6 +111,8 @@ class ChooseImage: NSObject, UIImagePickerControllerDelegate, UINavigationContro
             print("jpg error")
             return
         }
+        
+        // Aqui passa a informacao para o core data
         book?.image = imageData as NSData
         
         //Retorna o callback da função principal

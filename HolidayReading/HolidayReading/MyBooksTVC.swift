@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 import CoreData
+import UserNotifications
 
 class MyBooksTVC: UITableViewController {
 
     var books: [Book] = [] // This needs CoreData to work
+    //var book: Book?
     var noBooksImage:UIImageView = UIImageView(image: UIImage(named: "noBooks")) // Image used when there aren't any Books (so, the first time it opens)
     
     var context: NSManagedObjectContext?
@@ -34,6 +36,7 @@ class MyBooksTVC: UITableViewController {
         noBooksImage.center.y = self.view.center.y - 80
         
         navigationItem.leftBarButtonItem = editButtonItem
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,10 +44,14 @@ class MyBooksTVC: UITableViewController {
         do {
             guard let context = context else { return }
             books = try context.fetch(Book.fetchRequest())
+            
             tableView.reloadData()
+            
         } catch let error {
             print(error.localizedDescription)
         }
+        
+        
         
         if books.count == 0 {
             noBooksImage.isHidden = false
@@ -55,6 +62,7 @@ class MyBooksTVC: UITableViewController {
         }
         
         updateBook()
+        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -142,6 +150,7 @@ class MyBooksTVC: UITableViewController {
         } catch let error {
             print(error.localizedDescription)
         }
+
         
         if books.count == 0 {
             noBooksImage.isHidden = false
@@ -150,6 +159,7 @@ class MyBooksTVC: UITableViewController {
             noBooksImage.isHidden = true
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,4 +167,9 @@ class MyBooksTVC: UITableViewController {
             editBookTVC.book = books[selectedBookIndex]
         }
     }
+    
+    func activateNotification() {
+        
+    }
+    
 }
