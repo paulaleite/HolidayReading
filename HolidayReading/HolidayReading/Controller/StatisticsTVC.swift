@@ -53,11 +53,12 @@ class StatisticsTVC: UITableViewController {
                 stats.daysRead = 0
                 stats.minutesRead = calcTotalOfMinutesRead(from: books)
                 stats.lastDayRead = nil
-                stats.pointsMade = (10 * stats.booksRead) + (5 * stats.daysRead)
+                stats.pointsMade = 0
             } else {
                 stats[0].booksRead = calcTotalBooksRead(from: books)
                 stats[0].pagesRead = calcTotalOfPagesRead(from: books)
                 stats[0].minutesRead = calcTotalOfMinutesRead(from: books)
+                stats[0].pointsMade = calcTotalPoint(from: stats)
             }
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
@@ -71,6 +72,7 @@ class StatisticsTVC: UITableViewController {
             do {
                 guard let context = context else { return }
                 stats = try context.fetch(Statistics.fetchRequest())
+                
             } catch let error {
                 print(error.localizedDescription)
             }
@@ -121,15 +123,23 @@ class StatisticsTVC: UITableViewController {
         
         for object in books {
             guard let book = object as Book? else { return 0 }
-            // preciso saber quantas vezes o usuario inseriu uma quantidade de paginas multiplicado pelo tempo de leitura que o usuário disponibilizou
-            amountOfMinutesRead += book.timesRead * ((book.amountOfReadingTimeHour*60) + book.amountOfReadingTimeMinute + (book.amountOfReadingTimeSecound/60))
+            amountOfMinutesRead += book.timesRead * ((book.amountOfReadingTimeHour * 60) + book.amountOfReadingTimeMinute + (book.amountOfReadingTimeSecound / 60))
         }
         
         return amountOfMinutesRead
     }
-
     
-
-    
+    func calcTotalPoint(from stats: [Statistics?]?) -> Int64 {
+        var amountOfPoints: Int64 = 0
+        
+        guard let stats = stats else { return 0 }
+        
+        for object in stats {
+            guard let stat = object as Statistics? else { return 0 }
+            amountOfPoints = (10 * stat.booksRead) + (5 * stat.daysRead)
+        }
+        
+        return amountOfPoints
+    }
 
 }

@@ -73,6 +73,7 @@ class UpdatePagesReadVC: UIViewController {
         
         dismissVC()
         
+        // Amount of days reading
         let currentCalendar = Calendar.autoupdatingCurrent
         let currentComponents = currentCalendar.dateComponents([.day, .month, .year], from: Date())
         let currentDay = currentComponents.day
@@ -98,8 +99,11 @@ class UpdatePagesReadVC: UIViewController {
             stats[0].daysRead += 1
             book?.timesRead += 1
         }
-    
+        
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        // Putting this info in the statistics TVC
+        
         
     }
     

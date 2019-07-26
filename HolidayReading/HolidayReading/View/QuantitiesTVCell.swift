@@ -27,10 +27,6 @@ class QuantitiesTVCell: UITableViewCell {
             containerView.layer.cornerRadius = 10
             containerView.backgroundColor = UIColor(red: 65/255, green: 59/255, blue: 137/255, alpha: 0.6)
             containerView.clipsToBounds = false
-            containerView.layer.shadowOpacity = 2
-            containerView.layer.shadowRadius = 2
-            containerView.layer.shadowColor = UIColor.lightGray.cgColor
-            containerView.layer.shadowOffset = CGSize(width: 3, height: 3)
         }
     }
 
