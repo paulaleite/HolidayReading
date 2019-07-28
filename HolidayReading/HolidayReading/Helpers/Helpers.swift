@@ -91,8 +91,8 @@ func scheduleSecoundNotification(for book: Book?, andBody body: String, categori
             guard let second = components.second else { return }
             components.second = second + Int(book.amountOfReadingTimeSecound)
             
-            let triggerDaily = Calendar.current.dateComponents([.hour, .minute, .second], from: newDate)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
+//            let triggerDaily = calendar.dateComponents([.hour, .minute, .second], from: newDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
             
             guard let bookID = book.bookID else { return }
             let request = UNNotificationRequest(identifier: "\(bookID)\(categoria)", content: content, trigger: trigger)

@@ -48,18 +48,13 @@ class StatisticsTVC: UITableViewController {
             if stats.count == 0 {
                 guard let stats = NSEntityDescription.insertNewObject(forEntityName: "Statistics", into: context) as? Statistics else { return }
                 
-                stats.booksRead = calcTotalBooksRead(from: books)
-                stats.pagesRead = calcTotalOfPagesRead(from: books)
+                stats.booksRead = 0
+                stats.pagesRead = 0
                 stats.daysRead = 0
-                stats.minutesRead = calcTotalOfMinutesRead(from: books)
+                stats.minutesRead = 0
                 stats.lastDayRead = nil
                 stats.pointsMade = 0
-            } else {
-                stats[0].booksRead = calcTotalBooksRead(from: books)
-                stats[0].pagesRead = calcTotalOfPagesRead(from: books)
-                stats[0].minutesRead = calcTotalOfMinutesRead(from: books)
-                stats[0].pointsMade = calcTotalPoint(from: stats)
-            }
+            } 
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
         } catch let error {

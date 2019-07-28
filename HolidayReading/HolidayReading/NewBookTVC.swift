@@ -48,6 +48,8 @@ class NewBookTVC: UITableViewController {
     
     var book: Book?
     
+    //var activityIndicatior: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,8 +108,17 @@ class NewBookTVC: UITableViewController {
         timeOfReadingLabel.text = timeFormatter.string(from: timeOfReadingPicker.date)
     }
     
+    func showLoadingAlert() {
+        let loadingAlertController = UIAlertController(title: "Salvando...", message: "", preferredStyle: .alert)
+        present(loadingAlertController, animated: true, completion: nil)
+    }
+    
     @objc func save() {
         
+        self.view.endEditing(true)
+        
+        showLoadingAlert()
+                
         guard let context = context else { return }
         
         var bookName: String = ""
@@ -162,7 +173,7 @@ class NewBookTVC: UITableViewController {
         if bookImageView == UIImage(named: "placeholder") {
             book?.image = noImage
         } else {
-            guard let imageData = bookImageView.image?.jpegData(compressionQuality: 1.0) else {
+            guard let imageData = bookImageView.image?.jpegData(compressionQuality: 0.0) else {
                 print("jpg error")
                 return
             }
@@ -179,7 +190,13 @@ class NewBookTVC: UITableViewController {
         
         scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?", categoria: 1)
         
-        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true) {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        
+        
+        
         
         
     }

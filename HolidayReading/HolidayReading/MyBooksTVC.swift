@@ -14,7 +14,7 @@ import UserNotifications
 class MyBooksTVC: UITableViewController {
 
     var books: [Book] = [] // This needs CoreData to work
-    //var book: Book?
+    var book: Book?
     var noBooksImage:UIImageView = UIImageView(image: UIImage(named: "noBooks")) // Image used when there aren't any Books (so, the first time it opens)
     
     var context: NSManagedObjectContext?
@@ -50,8 +50,6 @@ class MyBooksTVC: UITableViewController {
         } catch let error {
             print(error.localizedDescription)
         }
-        
-        
         
         if books.count == 0 {
             noBooksImage.isHidden = false
@@ -118,6 +116,11 @@ class MyBooksTVC: UITableViewController {
                 self.navigationItem.leftBarButtonItem?.isEnabled = true
             }
             
+            guard let bookID = book?.bookID else { return }
+            cancelNotification(forId: bookID, categoria: 0)
+            cancelNotification(forId: bookID, categoria: 1)
+            
+            
         }
     }
     
@@ -166,10 +169,6 @@ class MyBooksTVC: UITableViewController {
         if let editBookTVC = segue.destination as? EditBookTVC {
             editBookTVC.book = books[selectedBookIndex]
         }
-    }
-    
-    func activateNotification() {
-        
     }
     
 }

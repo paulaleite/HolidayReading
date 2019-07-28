@@ -38,10 +38,10 @@ class MyBooksTVCell: UITableViewCell {
         didSet {
             containerView.clipsToBounds = false
             containerView.layer.cornerRadius = 8
-            containerView.layer.shadowOpacity = 3
-            containerView.layer.shadowRadius = 3
-            containerView.layer.shadowColor = UIColor.init(red: 222/255, green: 172/255, blue: 58/255, alpha: 0.5).cgColor
-            containerView.layer.shadowOffset = CGSize(width: 3, height: 3)
+            containerView.layer.shadowOpacity = 2
+            containerView.layer.shadowRadius = 2
+            containerView.layer.shadowColor = UIColor.lightGray.cgColor
+            containerView.layer.shadowOffset = CGSize(width: 2, height: 2)
     
         }
     }

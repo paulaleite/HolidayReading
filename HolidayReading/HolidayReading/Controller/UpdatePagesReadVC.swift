@@ -26,6 +26,7 @@ class UpdatePagesReadVC: UIViewController {
     let increments: Float = 1
     
     var stats: [Statistics] = []
+    var books: [Book] = []
     
     @IBOutlet var addButton: UIButton! {
         didSet {
@@ -51,6 +52,20 @@ class UpdatePagesReadVC: UIViewController {
         do {
             guard let context = context else { return }
             stats = try context.fetch(Statistics.fetchRequest())
+            books = try context.fetch(Book.fetchRequest())
+            
+            if stats.count == 0 {
+                guard let stats = NSEntityDescription.insertNewObject(forEntityName: "Statistics", into: context) as? Statistics else { return }
+                
+                stats.booksRead = calcTotalBooksRead(from: books)
+                stats.pagesRead = calcTotalOfPagesRead(from: books)
+                stats.daysRead = 0
+                stats.minutesRead = calcTotalOfMinutesRead(from: books)
+                stats.lastDayRead = nil
+                stats.pointsMade = 0
+            }
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
 
         } catch let error {
             print(error.localizedDescription)
@@ -70,8 +85,6 @@ class UpdatePagesReadVC: UIViewController {
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         MainTVC?.updateBook()
-        
-        dismissVC()
         
         // Amount of days reading
         let currentCalendar = Calendar.autoupdatingCurrent
@@ -100,10 +113,17 @@ class UpdatePagesReadVC: UIViewController {
             book?.timesRead += 1
         }
         
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        //(UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         // Putting this info in the statistics TVC
+        stats[0].booksRead = calcTotalBooksRead(from: books)
+        stats[0].pagesRead = calcTotalOfPagesRead(from: books)
+        //stats[0].minutesRead += 
+        stats[0].pointsMade = calcTotalPoint(from: stats)
         
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        dismissVC()
         
     }
     
@@ -115,6 +135,63 @@ class UpdatePagesReadVC: UIViewController {
         amountOfPagesSlider.value = roundedValue
         
         amountOfPagesLabel.text = "\(Int(amountOfPagesSlider.value))"
+    }
+    
+    func calcTotalBooksRead(from books: [Book?]?) -> Int64 {
+        var amountOfBooksRead: Int64 = 0
+        
+        guard let books = books else { return 0 }
+        
+        for object in books {
+            guard let book = object as Book? else { return 0 }
+            
+            if book.pagesRead == book.numOfPages {
+                amountOfBooksRead += 1
+            }
+            
+        }
+        
+        return amountOfBooksRead
+        
+    }
+    
+    func calcTotalOfPagesRead(from books: [Book?]?) -> Int64 {
+        var amountOfPagesRead: Int64 = 0
+        
+        guard let books = books else { return 0 }
+        
+        for object in books {
+            guard let book = object as Book? else { return 0 }
+            amountOfPagesRead += Int64(book.pagesRead)
+        }
+        
+        return amountOfPagesRead
+    }
+    
+    func calcTotalOfMinutesRead(from books: [Book?]?) -> Int64 {
+        var amountOfMinutesRead: Int64 = 0
+        
+        guard let books = books else { return 0 }
+        
+        for object in books {
+            guard let book = object as Book? else { return 0 }
+            amountOfMinutesRead += book.timesRead * ((book.amountOfReadingTimeHour * 60) + book.amountOfReadingTimeMinute + (book.amountOfReadingTimeSecound / 60))
+        }
+        
+        return amountOfMinutesRead
+    }
+    
+    func calcTotalPoint(from stats: [Statistics?]?) -> Int64 {
+        var amountOfPoints: Int64 = 0
+        
+        guard let stats = stats else { return 0 }
+        
+        for object in stats {
+            guard let stat = object as Statistics? else { return 0 }
+            amountOfPoints = (10 * stat.booksRead) + (5 * stat.daysRead)
+        }
+        
+        return amountOfPoints
     }
     
 }
