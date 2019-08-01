@@ -13,7 +13,9 @@ class UpdatePagesReadVC: UIViewController {
 
     var book: Book?
     
-    var MainTVC: MyBooksTVC?
+    //var MainTVC: MyBooksTVC?
+    
+    var mainVC: MyBooksVC?
     
     @IBOutlet var amountOfPagesSlider: UISlider!
     
@@ -84,7 +86,7 @@ class UpdatePagesReadVC: UIViewController {
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
-        MainTVC?.updateBook()
+        mainVC?.updateBook()
         
         // Amount of days reading
         let currentCalendar = Calendar.autoupdatingCurrent

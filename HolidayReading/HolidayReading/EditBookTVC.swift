@@ -36,6 +36,26 @@ class EditBookTVC: UITableViewController {
     
     @IBOutlet var readingUpdateButton: UIButton!
     
+    @IBOutlet var deletionButton: UIButton! {
+        didSet {
+            self.deletionButton.layer.borderWidth = 2
+            self.deletionButton.layer.borderColor = #colorLiteral(red: 0.7961079478, green: 0.3541672826, blue: 0.3972176015, alpha: 1)
+            self.deletionButton.layer.cornerRadius = 10
+        }
+    }
+    
+    @IBOutlet var bookImage: UIImageView!
+    
+    @IBOutlet var bookName: UILabel!
+    
+    @IBOutlet var amountOfPagesLabel: UILabel!
+    
+    @IBOutlet var pagesLabe: UILabel!
+    
+    @IBOutlet var amountOfDaysLabel: UILabel!
+    
+    @IBOutlet var daysLabe: UILabel!
+    
     var areCellsExpanded = [false, false, false]
     
     var timeOfReadingPerDayPickerData: [[String]] = [[String]]()
@@ -52,8 +72,12 @@ class EditBookTVC: UITableViewController {
     
     var isInEditingMode = false
     
+    var context: NSManagedObjectContext?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         // Amount of Time Picker
         self.timeOfReadingPerDayPicker.delegate = self
@@ -92,17 +116,26 @@ class EditBookTVC: UITableViewController {
             limitOfReadingLabel.text = dateFormatter.string(from: (book.limitDataOfReading)! as Date)
             limitOfReadingPicker?.addTarget(self, action: #selector(dateChanged(limitOfReadingPicker:)), for: .valueChanged)
             // Progress Bar
-            self.pagesProgressBar.progressValue = CGFloat(book.pagesRead/book.numOfPages)
-            pagesLabel.text = "\(Int(book.pagesRead))"
+            //self.pagesProgressBar.progressValue = CGFloat(book.pagesRead/book.numOfPages)
+            //pagesLabel.text = "\(Int(book.pagesRead))"
+            //daysReadingLabel.text = "\(book.timesRead)"
             
+            bookName.text = book.bookName
+            amountOfPagesLabel.text = "\(Int(book.pagesRead))"
+            pagesLabe.text = "páginas de \(Int(book.numOfPages))"
+            amountOfDaysLabel.text = "\(Int((book.amountOfTimeLeft) * 1.15741e-5))"
+            daysLabe.text = "dias sobrando"
             
-            daysReadingLabel.text = "\(book.timesRead)"
+            guard let data = book.image as Data? else { return }
+            bookImage.image = UIImage(data: data)
             
         }
         
         readingUpdateButton.layer.cornerRadius = 10
         
     }
+    
+    
     
     // Code #4 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
     @objc func dateChanged(limitOfReadingPicker: UIDatePicker) {
@@ -135,60 +168,66 @@ class EditBookTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 || indexPath.section == 2 {
+        if indexPath.section == 2 || indexPath.section == 3 {
             return 44
-        } else {
+        } else if indexPath.section == 1 {
             return areCellsExpanded[indexPath.row] == true ? 212 : 44
+        } else {
+            return 413
         }
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 200))
-        
-        if section == 0 {
-            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.size.width, height: 50))
-            headerLabel.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
-            //headerLabel.
-            headerLabel.text = "Informações"
-            headerLabel.textAlignment = .left
-            headerView.addSubview(headerLabel)
-
-        } else if section == 1 {
-            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.size.width, height: 50))
-            headerLabel.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
-            headerLabel.text = "Editáveis"
-            headerLabel.textAlignment = .left
-            headerView.addSubview(headerLabel)
-            
-            let addButton = CustomButton(type: .custom)
-            addButton.id = section
-            addButton.setTitle(isInEditingMode ? "Adicionar" : "Adicionar", for: .normal)
-            addButton.titleLabel?.font = UIFont(name: "SF-Pro-Display-Regular", size: 17)
-            addButton.addTarget(self, action: #selector(saveInformation), for: .touchUpInside)
-            addButton.setTitleColor(#colorLiteral(red: 0.2549019608, green: 0.231372549, blue: 0.537254902, alpha: 1), for: .normal)
-            addButton.titleLabel?.textAlignment = .right
-            headerView.addSubview(addButton)
-            
-            addButton.translatesAutoresizingMaskIntoConstraints = false
-            addButton.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: 0).isActive = true
-            addButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
-            addButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-            
-            let tapPress = UITapGestureRecognizer(target: self, action: #selector(tapped))
-            view.addGestureRecognizer(tapPress)
-            tapPress.cancelsTouchesInView = false
-        } else {
-            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        }
-        
-        
-        return headerView
-    }
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 200))
+//
+//        if section == 0 {
+//            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//            let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.size.width, height: 50))
+//            headerLabel.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+//            //headerLabel.
+//            headerLabel.text = "Informações"
+//            headerLabel.textAlignment = .left
+//            headerView.addSubview(headerLabel)
+//
+//        } else if section == 1 {
+//            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//            let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.size.width, height: 50))
+//            headerLabel.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+//            headerLabel.text = "Editáveis"
+//            headerLabel.textAlignment = .left
+//            headerView.addSubview(headerLabel)
+//
+//            let addButton = CustomButton(type: .custom)
+//            addButton.id = section
+//            addButton.setTitle(isInEditingMode ? "Adicionar" : "Adicionar", for: .normal)
+//            addButton.titleLabel?.font = UIFont(name: "SF-Pro-Display-Regular", size: 17)
+//            addButton.addTarget(self, action: #selector(saveInformation), for: .touchUpInside)
+//            addButton.setTitleColor(#colorLiteral(red: 0.2549019608, green: 0.231372549, blue: 0.537254902, alpha: 1), for: .normal)
+//            addButton.titleLabel?.textAlignment = .right
+//            headerView.addSubview(addButton)
+//
+//            addButton.translatesAutoresizingMaskIntoConstraints = false
+//            addButton.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: 0).isActive = true
+//            addButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
+//            addButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//
+//            let tapPress = UITapGestureRecognizer(target: self, action: #selector(tapped))
+//            view.addGestureRecognizer(tapPress)
+//            tapPress.cancelsTouchesInView = false
+//        } else {
+//            headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        }
+//
+//
+//        return headerView
+//    }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        if section == 0 {
+            return 0
+        } else {
+            return 25
+        }
     }
     
     @objc func tapped() {
@@ -234,6 +273,35 @@ class EditBookTVC: UITableViewController {
         amountOfDaysRead = book.timesRead
         
         return amountOfDaysRead
+    }
+    
+    @IBAction func updatePagesRead() {
+        
+        let updatePagesReadVC = UpdatePagesReadVC()
+        updatePagesReadVC.modalPresentationStyle = .custom
+        updatePagesReadVC.modalTransitionStyle = .crossDissolve
+        updatePagesReadVC.book = book
+        //updatePagesReadVC.MainTVC = self
+        
+        present(updatePagesReadVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func deleteBook(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+        
+        if let book = book {
+            context?.delete(book)
+            
+            tableView.reloadData()
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            guard let bookID = book.bookID else { return }
+            cancelNotification(forId: bookID, categoria: 0)
+            cancelNotification(forId: bookID, categoria: 1)
+            
+        }
+        
     }
     
 

@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Notifications not allowed by user")
             }
         }
+        
+        
         return true
     }
     

@@ -139,7 +139,7 @@ class MyBooksTVC: UITableViewController {
         updatePagesReadVC.modalPresentationStyle = .custom
         updatePagesReadVC.modalTransitionStyle = .crossDissolve
         updatePagesReadVC.book = books[selectedBookIndex]
-        updatePagesReadVC.MainTVC = self
+        //updatePagesReadVC.MainTVC = self
         
         present(updatePagesReadVC, animated: true, completion: nil)
         
