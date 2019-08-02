@@ -752,10 +752,10 @@
             </objects>
             <point key="canvasLocation" x="37.681159420289859" y="195.53571428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit BookVC-->
         <scene sceneID="18v-OC-uLg">
             <objects>
-                <viewController id="tzr-BP-csO" sceneMemberID="viewController">
+                <viewController id="tzr-BP-csO" customClass="EditBookVC" customModule="HolidayReading" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NEA-FB-dwd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -826,7 +826,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customPickerCell" rowHeight="212" id="DKk-Un-Y7F">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customPickerCell" rowHeight="212" id="DKk-Un-Y7F" customClass="CustomPickerTVCell" customModule="HolidayReading" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DKk-Un-Y7F" id="ehK-PT-NYd">
@@ -873,8 +873,15 @@
                                                 <constraint firstAttribute="trailing" secondItem="zAy-Ss-s0j" secondAttribute="trailing" constant="20" id="swQ-MX-zUx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountOfHoursLabel" destination="Jkk-Vq-dNN" id="ceg-ZH-4DN"/>
+                                            <outlet property="amountOfMinutesLabel" destination="sE4-oh-jog" id="bgQ-Zq-N6q"/>
+                                            <outlet property="amountOfSecoundsLabel" destination="zAy-Ss-s0j" id="mWY-Qf-UZz"/>
+                                            <outlet property="amountOfTimeReadingLabel" destination="fF4-Wc-kKa" id="Z6v-zf-eyF"/>
+                                            <outlet property="amountOfTimeReadingPicker" destination="Ze6-Vs-Kf2" id="TKD-Cs-fbs"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="datePickerCell" rowHeight="212" id="Prv-Ju-mIF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="datePickerCell" rowHeight="212" id="Prv-Ju-mIF" customClass="DatePickerTVCell" customModule="HolidayReading" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="240" width="414" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Prv-Ju-mIF" id="Sl2-23-DZ8">
@@ -910,8 +917,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="dId-Ck-bjx" secondAttribute="bottom" id="zCO-tc-kxG"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="datePicker" destination="dId-Ck-bjx" id="HLj-hL-SIa"/>
+                                            <outlet property="infoLabel" destination="ygf-Wr-riv" id="Fl3-9w-txS"/>
+                                            <outlet property="textInfoLabel" destination="NTT-4a-qcF" id="kYt-S4-JrU"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="readingCell" id="fpR-BC-4dv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="readingCell" id="fpR-BC-4dv" customClass="UpdatePagesReadTVCell" customModule="HolidayReading" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="452" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fpR-BC-4dv" id="mBj-HQ-EbL">
@@ -936,8 +948,11 @@
                                                 <constraint firstItem="Mld-Lq-h4g" firstAttribute="centerX" secondItem="mBj-HQ-EbL" secondAttribute="centerX" id="mGT-1r-isA"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="updatePagesReadButton" destination="Mld-Lq-h4g" id="aD0-o5-qsi"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="removeCell" id="IyK-4k-XlF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="removeCell" id="IyK-4k-XlF" customClass="RemoveBookTVCell" customModule="HolidayReading" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="496" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IyK-4k-XlF" id="QMQ-u4-h9U">
@@ -962,6 +977,9 @@
                                                 <constraint firstItem="OLe-SP-l2d" firstAttribute="centerX" secondItem="QMQ-u4-h9U" secondAttribute="centerX" id="naV-EL-Sho"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="removeBookButton" destination="OLe-SP-l2d" id="hX5-6N-9Ks"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -979,6 +997,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TMz-Kh-iPR"/>
                     </view>
+                    <connections>
+                        <outlet property="bookImageView" destination="UFs-ak-pHo" id="d4M-Kg-13j"/>
+                        <outlet property="bookNameLabel" destination="pGq-ao-JC7" id="28r-NR-kCC"/>
+                        <outlet property="daysLabel" destination="awP-WR-XQv" id="rug-K1-Efg"/>
+                        <outlet property="daysLeftLabel" destination="ADH-Pt-Kk5" id="NJ9-5a-0Bc"/>
+                        <outlet property="pagesReadLabel" destination="F2W-yu-OCE" id="jpj-P2-cgr"/>
+                        <outlet property="totalPagesLabel" destination="wKy-sq-KLK" id="Lsu-AP-mIw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="57A-e8-Qtb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
