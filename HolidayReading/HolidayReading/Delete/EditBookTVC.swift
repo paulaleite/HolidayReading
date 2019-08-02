@@ -230,9 +230,9 @@ class EditBookTVC: UITableViewController {
         }
     }
     
-    @objc func tapped() {
-        isInEditingMode = !isInEditingMode
-    }
+//    @objc func tapped() {
+//        isInEditingMode = !isInEditingMode
+//    }
     
     
     @objc func saveInformation() {

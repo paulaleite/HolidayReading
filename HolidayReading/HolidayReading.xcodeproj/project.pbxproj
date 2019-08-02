@@ -14,6 +14,8 @@
 		1E83688822E0FB18006C25E0 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83688722E0FB18006C25E0 /* ProgressBarView.swift */; };
 		1E83688C22E10C0F006C25E0 /* StatisticsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83688B22E10C0F006C25E0 /* StatisticsTVC.swift */; };
 		1E83689C22E25C86006C25E0 /* ChoooseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E83689B22E25C86006C25E0 /* ChoooseImage.swift */; };
+		1E9181D522F4B5760065F92A /* TimeDatePickerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9181D422F4B5760065F92A /* TimeDatePickerTVCell.swift */; };
+		1E9181D722F4B5A30065F92A /* DatePickerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9181D622F4B5A30065F92A /* DatePickerTVCell.swift */; };
 		1ED76F7222DE382400143660 /* ExtensionEditBookTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */; };
 		642E3E0A22E8E06100B8B288 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642E3E0922E8E06100B8B288 /* Helpers.swift */; };
 		642E3E0D22E8EB4800B8B288 /* Statistics+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642E3E0B22E8EB4800B8B288 /* Statistics+CoreDataClass.swift */; };
@@ -35,7 +37,6 @@
 		64780A2222D1816400664CA4 /* QuantitiesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64780A2122D1816400664CA4 /* QuantitiesTVCell.swift */; };
 		64780A2422D18A0500664CA4 /* PointsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64780A2322D18A0500664CA4 /* PointsTVCell.swift */; };
 		647A638F22F3A8B4005AA9BF /* EditBookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A638E22F3A8B4005AA9BF /* EditBookVC.swift */; };
-		647A639122F3BA32005AA9BF /* DatePickerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A639022F3BA32005AA9BF /* DatePickerTVCell.swift */; };
 		647A639322F3BAB5005AA9BF /* UpdatePagesReadTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A639222F3BAB5005AA9BF /* UpdatePagesReadTVCell.swift */; };
 		647A639522F3BB04005AA9BF /* RemoveBookTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A639422F3BB04005AA9BF /* RemoveBookTVCell.swift */; };
 		64ADBAC622DBAB2300391DF0 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ADBAC522DBAB2300391DF0 /* RoundedImageView.swift */; };
@@ -74,6 +75,8 @@
 		1E83688722E0FB18006C25E0 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		1E83688B22E10C0F006C25E0 /* StatisticsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTVC.swift; sourceTree = "<group>"; };
 		1E83689B22E25C86006C25E0 /* ChoooseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChoooseImage.swift; path = ../../ChoooseImage.swift; sourceTree = "<group>"; };
+		1E9181D422F4B5760065F92A /* TimeDatePickerTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDatePickerTVCell.swift; sourceTree = "<group>"; };
+		1E9181D622F4B5A30065F92A /* DatePickerTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTVCell.swift; sourceTree = "<group>"; };
 		1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionEditBookTVC.swift; sourceTree = "<group>"; };
 		642E3E0922E8E06100B8B288 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		642E3E0B22E8EB4800B8B288 /* Statistics+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -101,7 +104,6 @@
 		64780A2122D1816400664CA4 /* QuantitiesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitiesTVCell.swift; sourceTree = "<group>"; };
 		64780A2322D18A0500664CA4 /* PointsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsTVCell.swift; sourceTree = "<group>"; };
 		647A638E22F3A8B4005AA9BF /* EditBookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBookVC.swift; sourceTree = "<group>"; };
-		647A639022F3BA32005AA9BF /* DatePickerTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTVCell.swift; sourceTree = "<group>"; };
 		647A639222F3BAB5005AA9BF /* UpdatePagesReadTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePagesReadTVCell.swift; sourceTree = "<group>"; };
 		647A639422F3BB04005AA9BF /* RemoveBookTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveBookTVCell.swift; sourceTree = "<group>"; };
 		64ADBAC522DBAB2300391DF0 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
@@ -213,7 +215,6 @@
 				1E552DFD22F359DA002E79B0 /* MyBooksVC.swift */,
 				64CEED0122D514F10095C93D /* NewBookTVC.swift */,
 				647A638E22F3A8B4005AA9BF /* EditBookVC.swift */,
-				1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */,
 				64ADBAD122DC202E00391DF0 /* UpdatePagesReadVC.swift */,
 				1E83688B22E10C0F006C25E0 /* StatisticsTVC.swift */,
 				642E3E0F22EDE64400B8B288 /* LoadingVC.swift */,
@@ -228,9 +229,8 @@
 				64ADBAD222DC202E00391DF0 /* UpdatePagesReadVC.xib */,
 				642E3E1022EDE64400B8B288 /* LoadingVC.xib */,
 				1E552DFF22F3896F002E79B0 /* CustomPickerTVCell.swift */,
-				647A639022F3BA32005AA9BF /* DatePickerTVCell.swift */,
-				647A639222F3BAB5005AA9BF /* UpdatePagesReadTVCell.swift */,
-				647A639422F3BB04005AA9BF /* RemoveBookTVCell.swift */,
+				1E9181D422F4B5760065F92A /* TimeDatePickerTVCell.swift */,
+				1E9181D622F4B5A30065F92A /* DatePickerTVCell.swift */,
 				1E552DFB22F3594E002E79B0 /* MyBooksCVCell.swift */,
 				64780A2122D1816400664CA4 /* QuantitiesTVCell.swift */,
 				64780A2322D18A0500664CA4 /* PointsTVCell.swift */,
@@ -255,11 +255,14 @@
 		647A638D22F3A86F005AA9BF /* Delete */ = {
 			isa = PBXGroup;
 			children = (
+				1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */,
 				64780A1822D1267C00664CA4 /* MyBooksTVC.swift */,
 				64780A1A22D12BC600664CA4 /* MyBooksTVCell.swift */,
 				1E83688722E0FB18006C25E0 /* ProgressBarView.swift */,
 				64E039DD22D8E2F300AD6B2E /* EditBookTVC.swift */,
+				647A639222F3BAB5005AA9BF /* UpdatePagesReadTVCell.swift */,
 				64E970FF22DD3412001335D0 /* ExtensionNewBookTVC.swift */,
+				647A639422F3BB04005AA9BF /* RemoveBookTVCell.swift */,
 			);
 			path = Delete;
 			sourceTree = "<group>";
@@ -410,6 +413,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ED76F7222DE382400143660 /* ExtensionEditBookTVC.swift in Sources */,
+				1E9181D722F4B5A30065F92A /* DatePickerTVCell.swift in Sources */,
+				1E9181D522F4B5760065F92A /* TimeDatePickerTVCell.swift in Sources */,
 				642E3E0A22E8E06100B8B288 /* Helpers.swift in Sources */,
 				64780A1B22D12BC600664CA4 /* MyBooksTVCell.swift in Sources */,
 				1E552DFC22F3594E002E79B0 /* MyBooksCVCell.swift in Sources */,
@@ -419,7 +424,6 @@
 				64780A2222D1816400664CA4 /* QuantitiesTVCell.swift in Sources */,
 				1E83688822E0FB18006C25E0 /* ProgressBarView.swift in Sources */,
 				1E552E0022F3896F002E79B0 /* CustomPickerTVCell.swift in Sources */,
-				647A639122F3BA32005AA9BF /* DatePickerTVCell.swift in Sources */,
 				647809E422D1156F00664CA4 /* HolidayReading.xcdatamodeld in Sources */,
 				64CEED0222D514F10095C93D /* NewBookTVC.swift in Sources */,
 				647809DC22D1156F00664CA4 /* AppDelegate.swift in Sources */,

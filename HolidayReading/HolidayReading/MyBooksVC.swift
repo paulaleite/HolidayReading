@@ -48,9 +48,6 @@ class MyBooksVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        
-        
         do {
             guard let context = context else { return }
             books = try context.fetch(Book.fetchRequest())
@@ -144,8 +141,9 @@ class MyBooksVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let editBookTVC = segue.destination as? EditBookTVC {
-            editBookTVC.book = books[selectedBookIndex]
+        if let editBookVC = segue.destination as? EditBookVC {
+            editBookVC.book = books[selectedBookIndex]
+            editBookVC.originalBook = books[selectedBookIndex]
         }
     }
     

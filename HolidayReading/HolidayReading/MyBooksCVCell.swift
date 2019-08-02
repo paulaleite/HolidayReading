@@ -34,10 +34,12 @@ class MyBookCVCell: UICollectionViewCell {
         didSet {
             updatePagesRead.layer.cornerRadius = updatePagesRead.frame.width/2
             updatePagesRead.clipsToBounds = false
-            updatePagesRead.layer.shadowOpacity = 6
-            updatePagesRead.layer.shadowRadius = 4
-            updatePagesRead.layer.shadowColor = UIColor.lightGray.cgColor
-            updatePagesRead.layer.shadowOffset = CGSize.zero
+            self.updatePagesRead.layer.borderWidth = 1
+            self.updatePagesRead.layer.borderColor = #colorLiteral(red: 0.8705882353, green: 0.6745098039, blue: 0.2274509804, alpha: 1)
+            //updatePagesRead.layer.shadowOpacity = 6
+            //updatePagesRead.layer.shadowRadius = 4
+            //updatePagesRead.layer.shadowColor = UIColor.lightGray.cgColor
+            //updatePagesRead.layer.shadowOffset = CGSize.zero
         }
     }
     

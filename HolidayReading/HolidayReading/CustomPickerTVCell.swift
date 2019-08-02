@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CustomPickerTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -25,6 +26,10 @@ class CustomPickerTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDat
     var hour: String = ""
     var minutes: String = ""
     var secound: String = ""
+    
+    var book: Book?
+    
+    var context: NSManagedObjectContext?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,6 +82,8 @@ class CustomPickerTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
         if component == 0 {
             hour = amountOfTimeReadingPickerData[component][row]
             amountOfHoursLabel.text = "\(row)h, "
@@ -87,6 +94,15 @@ class CustomPickerTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDat
             secound = amountOfTimeReadingPickerData[component][row]
             amountOfSecoundsLabel.text = "\(row)s"
         }
+        
+        guard let numOfHours = Int64(amountOfTimeReadingPickerData[0][amountOfTimeReadingPicker.selectedRow(inComponent: 0)]) else { return }
+        book?.amountOfReadingTimeHour = numOfHours
+        
+        guard let numOfMinutes = Int64(amountOfTimeReadingPickerData[1][amountOfTimeReadingPicker.selectedRow(inComponent: 1)]) else { return }
+        book?.amountOfReadingTimeMinute = numOfMinutes
+        
+        guard let numOfSecound = Int64(amountOfTimeReadingPickerData[2][amountOfTimeReadingPicker.selectedRow(inComponent: 2)]) else { return }
+        book?.amountOfReadingTimeSecound = numOfSecound
         
         
     }

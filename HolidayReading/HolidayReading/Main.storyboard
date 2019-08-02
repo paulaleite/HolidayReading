@@ -761,13 +761,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UFs-ak-pHo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="358.5"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Xy3-l9-mJK">
-                                <rect key="frame" x="20" y="456" width="374" height="100"/>
+                                <rect key="frame" x="20" y="358.5" width="315" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harry Potter e o Cálice de Fogo" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGq-ao-JC7">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="56.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="56.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="Nic-98-s4B"/>
                                         </constraints>
@@ -821,9 +821,8 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="L3J-Mc-g1l"/>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GK9-Cq-nYp">
-                                <rect key="frame" x="0.0" y="564" width="414" height="332"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GK9-Cq-nYp">
+                                <rect key="frame" x="0.0" y="466.5" width="414" height="310.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customPickerCell" rowHeight="212" id="DKk-Un-Y7F" customClass="CustomPickerTVCell" customModule="HolidayReading" customModuleProvider="target">
@@ -881,7 +880,7 @@
                                             <outlet property="amountOfTimeReadingPicker" destination="Ze6-Vs-Kf2" id="TKD-Cs-fbs"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="datePickerCell" rowHeight="212" id="Prv-Ju-mIF" customClass="DatePickerTVCell" customModule="HolidayReading" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timeDatePickerCell" rowHeight="212" id="Prv-Ju-mIF" customClass="TimeDatePickerTVCell" customModule="HolidayReading" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="240" width="414" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Prv-Ju-mIF" id="Sl2-23-DZ8">
@@ -895,13 +894,13 @@
                                                     </date>
                                                 </datePicker>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horário de Leitura" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTT-4a-qcF">
-                                                    <rect key="frame" x="20" y="12" width="112" height="18"/>
+                                                    <rect key="frame" x="20" y="12" width="111.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-Wr-riv">
-                                                    <rect key="frame" x="387" y="12" width="7" height="18"/>
+                                                    <rect key="frame" x="388" y="12" width="6" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -918,82 +917,106 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="datePicker" destination="dId-Ck-bjx" id="HLj-hL-SIa"/>
-                                            <outlet property="infoLabel" destination="ygf-Wr-riv" id="Fl3-9w-txS"/>
-                                            <outlet property="textInfoLabel" destination="NTT-4a-qcF" id="kYt-S4-JrU"/>
+                                            <outlet property="timeDatePicker" destination="dId-Ck-bjx" id="HLj-hL-SIa"/>
+                                            <outlet property="timeInfoLabel" destination="ygf-Wr-riv" id="Fl3-9w-txS"/>
+                                            <outlet property="timeTextLabel" destination="NTT-4a-qcF" id="kYt-S4-JrU"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="readingCell" id="fpR-BC-4dv" customClass="UpdatePagesReadTVCell" customModule="HolidayReading" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="452" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fpR-BC-4dv" id="mBj-HQ-EbL">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mld-Lq-h4g">
-                                                    <rect key="frame" x="20.5" y="4" width="373" height="36"/>
-                                                    <color key="backgroundColor" red="0.87058823529999996" green="0.67450980390000004" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="20"/>
-                                                    <state key="normal" title="Eu Li Hoje!">
-                                                        <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="updatePagesRead" destination="twG-jb-fAZ" eventType="touchUpInside" id="foY-K8-Dqq"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Mld-Lq-h4g" firstAttribute="width" secondItem="mBj-HQ-EbL" secondAttribute="width" multiplier="0.9" id="C4c-fq-pIb"/>
-                                                <constraint firstItem="Mld-Lq-h4g" firstAttribute="centerY" secondItem="mBj-HQ-EbL" secondAttribute="centerY" id="EVG-3F-LdF"/>
-                                                <constraint firstItem="Mld-Lq-h4g" firstAttribute="centerX" secondItem="mBj-HQ-EbL" secondAttribute="centerX" id="mGT-1r-isA"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="updatePagesReadButton" destination="Mld-Lq-h4g" id="aD0-o5-qsi"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="removeCell" id="IyK-4k-XlF" customClass="RemoveBookTVCell" customModule="HolidayReading" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="496" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="datePickerCell" rowHeight="212" id="IyK-4k-XlF" customClass="DatePickerTVCell" customModule="HolidayReading" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="452" width="414" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IyK-4k-XlF" id="QMQ-u4-h9U">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="211.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLe-SP-l2d">
-                                                    <rect key="frame" x="20.5" y="4" width="373" height="36"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="20"/>
-                                                    <state key="normal" title="Excluir">
-                                                        <color key="titleColor" red="0.74160748720000003" green="0.38012334660000002" blue="0.40570245960000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="deleteBook:" destination="twG-jb-fAZ" eventType="touchUpInside" id="S63-Ce-czO"/>
-                                                    </connections>
-                                                </button>
+                                                <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="p7F-ls-zrf">
+                                                    <rect key="frame" x="0.0" y="45" width="414" height="166.5"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="584909379.53081501">
+                                                        <!--2019-07-15 18:49:39 +0000-->
+                                                    </date>
+                                                </datePicker>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Limite de Leitura" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kl-EA-dOS">
+                                                    <rect key="frame" x="20" y="12" width="136" height="18"/>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDi-fq-LyW">
+                                                    <rect key="frame" x="387.5" y="12" width="6.5" height="18"/>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="OLe-SP-l2d" firstAttribute="width" secondItem="QMQ-u4-h9U" secondAttribute="width" multiplier="0.9" id="8QW-dr-gLg"/>
-                                                <constraint firstItem="OLe-SP-l2d" firstAttribute="centerY" secondItem="QMQ-u4-h9U" secondAttribute="centerY" id="F8T-lQ-w8r"/>
-                                                <constraint firstItem="OLe-SP-l2d" firstAttribute="centerX" secondItem="QMQ-u4-h9U" secondAttribute="centerX" id="naV-EL-Sho"/>
+                                                <constraint firstItem="p7F-ls-zrf" firstAttribute="leading" secondItem="QMQ-u4-h9U" secondAttribute="leading" id="31C-kk-EG6"/>
+                                                <constraint firstItem="p7F-ls-zrf" firstAttribute="top" secondItem="6kl-EA-dOS" secondAttribute="bottom" constant="15" id="7xB-az-rFV"/>
+                                                <constraint firstAttribute="bottom" secondItem="p7F-ls-zrf" secondAttribute="bottom" id="ESu-jn-h5I"/>
+                                                <constraint firstItem="6kl-EA-dOS" firstAttribute="leading" secondItem="QMQ-u4-h9U" secondAttribute="leading" constant="20" id="Ozi-9h-5Ja"/>
+                                                <constraint firstItem="6kl-EA-dOS" firstAttribute="top" secondItem="QMQ-u4-h9U" secondAttribute="top" constant="12" id="SSy-FH-UcZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="wDi-fq-LyW" secondAttribute="trailing" constant="20" id="VXZ-Ll-PT0"/>
+                                                <constraint firstItem="wDi-fq-LyW" firstAttribute="centerY" secondItem="6kl-EA-dOS" secondAttribute="centerY" id="e2H-Jt-O8L"/>
+                                                <constraint firstAttribute="trailing" secondItem="p7F-ls-zrf" secondAttribute="trailing" id="oDn-jD-gFj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="removeBookButton" destination="OLe-SP-l2d" id="hX5-6N-9Ks"/>
+                                            <outlet property="dateInfoLabel" destination="wDi-fq-LyW" id="nts-da-gZu"/>
+                                            <outlet property="datePicker" destination="p7F-ls-zrf" id="kN5-Kh-Lqb"/>
+                                            <outlet property="dateTextLabel" destination="6kl-EA-dOS" id="hH7-Sm-aBa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jlw-rz-4U4">
+                                <rect key="frame" x="0.0" y="777" width="414" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="20"/>
+                                <state key="normal" title="Excluir">
+                                    <color key="titleColor" red="0.74160748720000003" green="0.38012334660000002" blue="0.40570245960000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteBook:" destination="tzr-BP-csO" eventType="touchUpInside" id="WNn-05-JMw"/>
+                                    <action selector="deleteBook:" destination="twG-jb-fAZ" eventType="touchUpInside" id="Xkj-z6-Cik"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxy-Dg-n9a">
+                                <rect key="frame" x="335" y="376" width="65" height="65"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="RkF-zf-0Xh"/>
+                                    <constraint firstAttribute="width" constant="65" id="fxF-xF-IGy"/>
+                                </constraints>
+                                <state key="normal" image="updatePagesRead"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLs-0z-pO5">
+                                <rect key="frame" x="0.0" y="465.5" width="414" height="1"/>
+                                <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="WWa-Cd-DsT"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="UFs-ak-pHo" firstAttribute="height" secondItem="NEA-FB-dwd" secondAttribute="height" multiplier="0.5" id="4Hf-Xe-P0w"/>
+                            <constraint firstItem="UFs-ak-pHo" firstAttribute="height" secondItem="NEA-FB-dwd" secondAttribute="height" multiplier="0.4" id="4Hf-Xe-P0w"/>
+                            <constraint firstItem="Jlw-rz-4U4" firstAttribute="top" secondItem="GK9-Cq-nYp" secondAttribute="bottom" id="7Kk-y6-Vye"/>
                             <constraint firstItem="UFs-ak-pHo" firstAttribute="trailing" secondItem="TMz-Kh-iPR" secondAttribute="trailing" id="BDF-JC-EGl"/>
                             <constraint firstItem="UFs-ak-pHo" firstAttribute="leading" secondItem="TMz-Kh-iPR" secondAttribute="leading" id="BgX-2e-p4V"/>
                             <constraint firstItem="Xy3-l9-mJK" firstAttribute="leading" secondItem="TMz-Kh-iPR" secondAttribute="leading" constant="20" id="DBe-s4-AJx"/>
-                            <constraint firstItem="Xy3-l9-mJK" firstAttribute="top" secondItem="UFs-ak-pHo" secondAttribute="bottom" constant="8" id="WGJ-GL-aoe"/>
-                            <constraint firstItem="TMz-Kh-iPR" firstAttribute="trailing" secondItem="Xy3-l9-mJK" secondAttribute="trailing" constant="20" id="bqx-Xf-nZY"/>
+                            <constraint firstItem="mLs-0z-pO5" firstAttribute="leading" secondItem="TMz-Kh-iPR" secondAttribute="leading" id="GCE-R6-7fN"/>
+                            <constraint firstAttribute="trailing" secondItem="mLs-0z-pO5" secondAttribute="trailing" id="H2X-a2-NWC"/>
+                            <constraint firstItem="GK9-Cq-nYp" firstAttribute="trailing" secondItem="TMz-Kh-iPR" secondAttribute="trailing" id="OeX-O9-9xN"/>
+                            <constraint firstItem="TMz-Kh-iPR" firstAttribute="trailing" secondItem="rxy-Dg-n9a" secondAttribute="trailing" constant="14" id="SOH-KG-tIz"/>
+                            <constraint firstItem="rxy-Dg-n9a" firstAttribute="centerY" secondItem="Xy3-l9-mJK" secondAttribute="centerY" id="Ssv-Ls-37a"/>
+                            <constraint firstItem="Xy3-l9-mJK" firstAttribute="top" secondItem="UFs-ak-pHo" secondAttribute="bottom" id="WGJ-GL-aoe"/>
+                            <constraint firstItem="TMz-Kh-iPR" firstAttribute="bottom" secondItem="Jlw-rz-4U4" secondAttribute="bottom" id="XEf-K8-Xbd"/>
+                            <constraint firstItem="GK9-Cq-nYp" firstAttribute="leading" secondItem="TMz-Kh-iPR" secondAttribute="leading" id="Yqa-7O-2Xe"/>
+                            <constraint firstItem="Jlw-rz-4U4" firstAttribute="width" secondItem="NEA-FB-dwd" secondAttribute="width" id="bcn-p9-gu1"/>
+                            <constraint firstItem="rxy-Dg-n9a" firstAttribute="leading" secondItem="Xy3-l9-mJK" secondAttribute="trailing" id="bqx-Xf-nZY"/>
+                            <constraint firstItem="Jlw-rz-4U4" firstAttribute="centerX" secondItem="NEA-FB-dwd" secondAttribute="centerX" id="mar-VT-3Mu"/>
+                            <constraint firstItem="GK9-Cq-nYp" firstAttribute="top" secondItem="Xy3-l9-mJK" secondAttribute="bottom" constant="8" id="oLW-dO-Qcj"/>
                             <constraint firstItem="UFs-ak-pHo" firstAttribute="top" secondItem="NEA-FB-dwd" secondAttribute="top" id="pjK-d9-3yR"/>
+                            <constraint firstItem="GK9-Cq-nYp" firstAttribute="top" secondItem="mLs-0z-pO5" secondAttribute="bottom" id="qid-t9-FTL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TMz-Kh-iPR"/>
                     </view>
@@ -1002,8 +1025,12 @@
                         <outlet property="bookNameLabel" destination="pGq-ao-JC7" id="28r-NR-kCC"/>
                         <outlet property="daysLabel" destination="awP-WR-XQv" id="rug-K1-Efg"/>
                         <outlet property="daysLeftLabel" destination="ADH-Pt-Kk5" id="NJ9-5a-0Bc"/>
+                        <outlet property="deleteBookButton" destination="Jlw-rz-4U4" id="kSJ-4Y-KBt"/>
+                        <outlet property="deleteBookButtonTopView" destination="mLs-0z-pO5" id="Xfu-0E-ilU"/>
                         <outlet property="pagesReadLabel" destination="F2W-yu-OCE" id="jpj-P2-cgr"/>
+                        <outlet property="tableView" destination="GK9-Cq-nYp" id="hZK-KB-wR2"/>
                         <outlet property="totalPagesLabel" destination="wKy-sq-KLK" id="Lsu-AP-mIw"/>
+                        <outlet property="updatePagesRead" destination="rxy-Dg-n9a" id="0Mu-Ex-z8q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="57A-e8-Qtb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1473,7 +1500,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="8RH-ck-Kkz" id="jjm-Ol-eG1"/>
-                        <segue destination="twG-jb-fAZ" kind="show" identifier="editSegue" id="gab-aH-LaI"/>
+                        <segue destination="tzr-BP-csO" kind="show" identifier="editSegue" id="r8K-BJ-H7X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOa-Ty-1lK" userLabel="First Responder" sceneMemberID="firstResponder"/>
