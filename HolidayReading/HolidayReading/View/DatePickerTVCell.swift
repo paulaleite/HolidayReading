@@ -36,6 +36,9 @@ class DatePickerTVCell: UITableViewCell {
         let amountOfTime = datePicker.date.timeIntervalSince(Date())
         book?.amountOfTimeLeft = amountOfTime
         
+        guard let bookID = book?.bookID else { return }
+        cancelNotification(forId: bookID)
+        
     }
     
     // Code #4 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)

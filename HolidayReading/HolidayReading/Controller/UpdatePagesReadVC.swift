@@ -45,7 +45,7 @@ class UpdatePagesReadVC: UIViewController {
         bgView.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = true
         
-        guard let numOfPages = book?.numOfPages else { return }
+        guard let numOfPages = book?.amountOfInputOption else { return }
         guard let amountOfPages = book?.pagesRead else { return }
         amountOfPagesSlider.maximumValue = numOfPages - amountOfPages
         
@@ -147,7 +147,7 @@ class UpdatePagesReadVC: UIViewController {
         for object in books {
             guard let book = object as Book? else { return 0 }
             
-            if book.pagesRead == book.numOfPages {
+            if book.pagesRead == book.amountOfInputOption {
                 amountOfBooksRead += 1
             }
             

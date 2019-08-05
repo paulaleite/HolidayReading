@@ -122,7 +122,7 @@ class EditBookTVC: UITableViewController {
             
             bookName.text = book.bookName
             amountOfPagesLabel.text = "\(Int(book.pagesRead))"
-            pagesLabe.text = "páginas de \(Int(book.numOfPages))"
+            pagesLabe.text = "páginas de \(Int(book.amountOfInputOption))"
             amountOfDaysLabel.text = "\(Int((book.amountOfTimeLeft) * 1.15741e-5))"
             daysLabe.text = "dias sobrando"
             
@@ -255,12 +255,12 @@ class EditBookTVC: UITableViewController {
         MainTVC?.updateBook()
         
         guard let bookID = book?.bookID else { return }
-        cancelNotification(forId: bookID, categoria: 0)
-        cancelNotification(forId: bookID, categoria: 1)
+        cancelNotification(forId: bookID)
+        cancelNotification(forId: bookID)
         guard let readingHour = book?.amountOfReadingTimeHour, let readingMinute = book?.amountOfReadingTimeMinute, let readingSecound = book?.amountOfReadingTimeSecound, let bookName = book?.bookName else { return }
-        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!", categoria: 0)
+        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!")
         
-        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?", categoria: 1)
+        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?")
         
     }
     
@@ -297,8 +297,8 @@ class EditBookTVC: UITableViewController {
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
             guard let bookID = book.bookID else { return }
-            cancelNotification(forId: bookID, categoria: 0)
-            cancelNotification(forId: bookID, categoria: 1)
+            cancelNotification(forId: bookID)
+            cancelNotification(forId: bookID)
             
         }
         

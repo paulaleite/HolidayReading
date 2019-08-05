@@ -86,7 +86,7 @@ class MyBooksVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "proCell", for: indexPath) as? MyBookCVCell {
             cell.bookNameLabel.text = books[indexPath.row].bookName
             cell.pagesLeftLabel.text = "\(Int(books[indexPath.row].pagesRead))"
-            cell.pagesLabel.text = "páginas de \(Int(books[indexPath.row].numOfPages))"
+            cell.pagesLabel.text = "páginas de \(Int(books[indexPath.row].amountOfInputOption))"
             cell.daysLeftLabel.text = "\(Int((books[indexPath.row].amountOfTimeLeft) * 1.15741e-5))"
             cell.daysLabel.text = "dias sobrando"
             

@@ -2,7 +2,7 @@
 //  Book+CoreDataClass.swift
 //  HolidayReading
 //
-//  Created by Paula Leite on 24/07/19.
+//  Created by Paula Leite on 04/08/19.
 //  Copyright © 2019 Paula Torales Leite. All rights reserved.
 //
 //

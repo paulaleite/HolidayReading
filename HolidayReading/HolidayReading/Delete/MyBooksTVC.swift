@@ -70,7 +70,7 @@ class MyBooksTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "bookInfo") as? MyBooksTVCell {
             cell.bookTitle.text = books[indexPath.row].bookName
-            cell.numOfPages.text = "\(Int(books[indexPath.row].pagesRead)) de \(Int(books[indexPath.row].numOfPages))"
+            cell.numOfPages.text = "\(Int(books[indexPath.row].pagesRead)) de \(Int(books[indexPath.row].amountOfInputOption))"
             cell.timeLeft.text = "\(Int((books[indexPath.row].amountOfTimeLeft) * 1.15741e-5)) dias"
             
             if books[indexPath.row].image == noImage {
@@ -117,8 +117,8 @@ class MyBooksTVC: UITableViewController {
             }
             
             guard let bookID = book?.bookID else { return }
-            cancelNotification(forId: bookID, categoria: 0)
-            cancelNotification(forId: bookID, categoria: 1)
+            cancelNotification(forId: bookID)
+            cancelNotification(forId: bookID)
             
             
         }

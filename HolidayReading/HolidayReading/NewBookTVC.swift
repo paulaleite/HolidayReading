@@ -47,6 +47,7 @@ class NewBookTVC: UITableViewController {
     var secound: String = ""
     
     var book: Book?
+    var books: [Book] = []
     
     //var activityIndicatior: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -88,6 +89,17 @@ class NewBookTVC: UITableViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
+        
+        // Getting the information that was already saved
+        do {
+            guard let context = context else { return }
+            books = try context.fetch(Book.fetchRequest())
+            
+            tableView.reloadData()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
         
         // Footer
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -131,9 +143,17 @@ class NewBookTVC: UITableViewController {
             return
         }
         
-        if numberOfPagesTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
-            guard let numOfPages = Float(numberOfPagesTextField.text!) else { return }
-            numPages = Float(numOfPages)
+        //book?.inputOption = books[0].inputOption
+        
+        if inputOption == 0 {
+            numberOfPagesTextField.placeholder = "Quantidade de Páginas"
+        } else {
+            numberOfPagesTextField.placeholder = "Quantidade de Capítulos"
+        }
+        
+        guard let numOfInputChoise = Float(numberOfPagesTextField.text!) else { return }
+        if numberOfPagesTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "", numOfInputChoise > 0, numOfInputChoise < 1000 {
+            numPages = Float(numOfInputChoise)
         } else {
             return
         }
@@ -142,7 +162,7 @@ class NewBookTVC: UITableViewController {
         book = newBook
         book?.bookName = bookName
         
-        book?.numOfPages = numPages
+        book?.amountOfInputOption = numPages
         
         book?.pagesRead = 0
         
@@ -186,42 +206,43 @@ class NewBookTVC: UITableViewController {
         
         // Notifications
         guard let readingHour = book?.amountOfReadingTimeHour, let readingMinute = book?.amountOfReadingTimeMinute, let readingSecound = book?.amountOfReadingTimeSecound else { return }
-        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!", categoria: 0)
+        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!")
         
-        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?", categoria: 1)
+        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?")
         
         self.dismiss(animated: true) {
             self.navigationController?.popViewController(animated: true)
         }
-        
-        
-        
-        
-        
-        
+  
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section >= 1 {
-            if areCellsExpanded[indexPath.section - 1] {
-                areCellsExpanded[indexPath.section - 1] = false
+        if indexPath.section >= 2 {
+            if areCellsExpanded[indexPath.section - 2] {
+                areCellsExpanded[indexPath.section - 2] = false
             } else {
                 for i in 0 ..< areCellsExpanded.count {
                     areCellsExpanded[i] = false
                 }
-                areCellsExpanded[indexPath.section - 1] = true
+                areCellsExpanded[indexPath.section - 2] = true
             }
 
             tableView.beginUpdates()
             tableView.endUpdates()
         }
+        
+//        if indexPath.section == 1 && indexPath.row == 0 {
+//            performSegue(withIdentifier: "chooseEntry", sender: self)
+//        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 161
+            return 322
+        } else if indexPath.section == 1 {
+            return 44
         } else {
-            return areCellsExpanded[indexPath.section - 1] == true ? 212 : 44
+            return areCellsExpanded[indexPath.section - 2] == true ? 212 : 44
         }
     }
     
@@ -235,6 +256,7 @@ class NewBookTVC: UITableViewController {
         chooseImage.imageSelector(self) { bookImageView in
             self.bookImageView.image = bookImageView
         }
-        
     }
+    
+    
 }

@@ -88,7 +88,7 @@ class StatisticsTVC: UITableViewController {
         for object in books {
             guard let book = object as Book? else { return 0 }
             
-            if book.pagesRead == book.numOfPages {
+            if book.pagesRead == book.amountOfInputOption {
                 amountOfBooksRead += 1
             }
             

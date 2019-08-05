@@ -29,8 +29,12 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         didSet {
             updatePagesRead.layer.cornerRadius = updatePagesRead.frame.width/2
             updatePagesRead.clipsToBounds = false
-            self.updatePagesRead.layer.borderWidth = 1
-            self.updatePagesRead.layer.borderColor = #colorLiteral(red: 0.8705882353, green: 0.6745098039, blue: 0.2274509804, alpha: 1)
+            //self.updatePagesRead.layer.borderWidth = 1
+            //self.updatePagesRead.layer.borderColor = #colorLiteral(red: 0.8705882353, green: 0.6745098039, blue: 0.2274509804, alpha: 1)
+            updatePagesRead.layer.shadowOpacity = 6
+            updatePagesRead.layer.shadowRadius = 4
+            updatePagesRead.layer.shadowColor = UIColor.lightGray.cgColor
+            updatePagesRead.layer.shadowOffset = CGSize.zero
         }
     }
     
@@ -59,6 +63,7 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var bookChanged = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,15 +78,14 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let book = book {
             bookNameLabel.text = book.bookName
             pagesReadLabel.text = "\(Int(book.pagesRead))"
-            totalPagesLabel.text = "páginas de \(Int(book.numOfPages))"
+            totalPagesLabel.text = "páginas de \(Int(book.amountOfInputOption))"
             daysLeftLabel.text = "\(Int((book.amountOfTimeLeft) * 1.15741e-5))"
             daysLabel.text = "dias sobrando"
         
             guard let data = book.image as Data? else { return }
             bookImageView.image = UIImage(data: data)
             
-//            updatePagesRead.tag = book.bookID
-//            updatePagesRead.addTarget(self, action: #selector(updatePagesRead(_:)), for: .touchUpInside)
+            updatePagesRead.addTarget(self, action: #selector(updatePagesRead(_:)), for: .touchUpInside)
         }
         
         // Navigation
@@ -92,6 +96,17 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         // Footer
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        print("test")
+        
+        if !bookChanged {
+            book = originalBook
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -188,18 +203,22 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         bookChanged = true
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        // Está dando o pop, mas está perdendo uma parte da Nav
+        self.navigationController?.popViewController(animated: true)
     
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    @objc func updatePagesRead(_ button: UIButton) {
         
-        print("test")
+        let updatePagesReadVC = UpdatePagesReadVC()
+        updatePagesReadVC.modalPresentationStyle = .custom
+        updatePagesReadVC.modalTransitionStyle = .crossDissolve
+        updatePagesReadVC.book = book
+        //updatePagesReadVC.mainVC = self
         
-        if !bookChanged {
-            book = originalBook
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        }
+        present(updatePagesReadVC, animated: true, completion: nil)
+        
     }
     
     @IBAction func deleteBook(_ sender: UIButton) {
@@ -207,21 +226,25 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if let book = book {
             
+            
             // Declare Alert Message
-            let alertmessage = UIAlertController(title: "Deletar", message: "Você tem certeza que deseja deletar esse livro?", preferredStyle: .alert)
+            let deleteBookAlertController = UIAlertController(title: "Deletar", message: "Você tem certeza que deseja deletar esse livro?", preferredStyle: .alert)
             // Botão de OK
             let botaoSim = UIAlertAction(title: "Sim", style: .default) {
                 (action) in
                 print("Yes button selected")
+                
+                // Não está cancelando a notificação
+                guard let bookID = book.bookID else { return }
+                cancelNotification(forId: bookID)
                 
                 self.context?.delete(book)
                 
                 self.tableView.reloadData()
                 (UIApplication.shared.delegate as! AppDelegate).saveContext()
                 
-                guard let bookID = book.bookID else { return }
-                cancelNotification(forId: bookID, categoria: 0)
-                cancelNotification(forId: bookID, categoria: 1)
+                // Está dando o pop, mas está perdendo uma parte da Nav
+                self.navigationController?.popViewController(animated: true)
                 
             }
             
@@ -230,21 +253,13 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("Cancel button selected")
             }
             
-            alertmessage.addAction(botaoSim)
-            alertmessage.addAction(botaoNao)
+            deleteBookAlertController.addAction(botaoSim)
+            deleteBookAlertController.addAction(botaoNao)
             
-            self.present(alertmessage, animated: true, completion: nil)
-            
-            
+            self.present(deleteBookAlertController, animated: true, completion: nil)
             
         }
         
-        self.navigationController?.popViewController(animated: true)
-        
     }
-    
-    
-    
-
 
 }
