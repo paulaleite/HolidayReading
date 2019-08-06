@@ -36,6 +36,10 @@ class NewBookTVC: UITableViewController {
     
     @IBOutlet var timeOfReadingPicker: UIDatePicker!
     
+    @IBOutlet var typeOfDataLabel: UILabel!
+    
+    @IBOutlet var choiseTypeOfDataLabel: UILabel!
+    
     var areCellsExpanded = [false, false, false]
     
     var context: NSManagedObjectContext?
@@ -101,9 +105,22 @@ class NewBookTVC: UITableViewController {
             print(error.localizedDescription)
         }
         
+        
         // Footer
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if inputOption == 0 {
+            numberOfPagesTextField.placeholder = "Quantidade de Páginas"
+            choiseTypeOfDataLabel.text = "Páginas"
+        } else if inputOption == 1 {
+            numberOfPagesTextField.placeholder = "Quantidade de Capítulos"
+            choiseTypeOfDataLabel.text = "Capítulos"
+        }
     }
     
     // Code #4 of CBL Document File (https://paper.dropbox.com/doc/CBL-Document-Paula--Ag8Oeg_7LmUEIWysuJgmYuXEAQ-zck3kpaQYAspQuFvAsOxk)
@@ -145,14 +162,10 @@ class NewBookTVC: UITableViewController {
         
         //book?.inputOption = books[0].inputOption
         
-        if inputOption == 0 {
-            numberOfPagesTextField.placeholder = "Quantidade de Páginas"
-        } else {
-            numberOfPagesTextField.placeholder = "Quantidade de Capítulos"
-        }
+        
         
         guard let numOfInputChoise = Float(numberOfPagesTextField.text!) else { return }
-        if numberOfPagesTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "", numOfInputChoise > 0, numOfInputChoise < 1000 {
+        if numberOfPagesTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
             numPages = Float(numOfInputChoise)
         } else {
             return

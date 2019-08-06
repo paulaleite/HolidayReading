@@ -23,6 +23,8 @@ class UpdatePagesReadVC: UIViewController {
     
     @IBOutlet var bgView: UIView!
     
+    @IBOutlet var titleLabel: UILabel!
+    
     var context: NSManagedObjectContext?
     
     let increments: Float = 1
@@ -75,6 +77,16 @@ class UpdatePagesReadVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if inputOption == 0 {
+            titleLabel.text = "Quantidade de Páginas Lidas"
+        } else {
+            titleLabel.text = "Quantidade de Capítulos Lidos"
+        }
+        
+    }
     
     @objc func dismissVC() {
         dismiss(animated: true, completion: nil)

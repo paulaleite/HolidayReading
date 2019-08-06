@@ -44,7 +44,6 @@ class MyBooksVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -66,6 +65,7 @@ class MyBooksVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         }
         
+        
         updateBook()
         
     }
@@ -86,7 +86,12 @@ class MyBooksVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "proCell", for: indexPath) as? MyBookCVCell {
             cell.bookNameLabel.text = books[indexPath.row].bookName
             cell.pagesLeftLabel.text = "\(Int(books[indexPath.row].pagesRead))"
-            cell.pagesLabel.text = "páginas de \(Int(books[indexPath.row].amountOfInputOption))"
+            if inputOption == 0 {
+                cell.pagesLabel.text = "páginas de \(Int(books[indexPath.row].amountOfInputOption))"
+            } else {
+                cell.pagesLabel.text = "capítulos de \(Int(books[indexPath.row].amountOfInputOption))"
+            }
+            
             cell.daysLeftLabel.text = "\(Int((books[indexPath.row].amountOfTimeLeft) * 1.15741e-5))"
             cell.daysLabel.text = "dias sobrando"
             

@@ -653,10 +653,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Csh-dv-14D">
+                                                    <rect key="frame" x="334" y="12" width="40" height="19.5"/>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="gMe-2y-CXY" secondAttribute="bottom" constant="12" id="Fz3-Pu-VFR"/>
+                                                <constraint firstItem="Csh-dv-14D" firstAttribute="top" secondItem="eW2-PD-Xx8" secondAttribute="top" constant="12" id="Y0P-Tp-8FF"/>
                                                 <constraint firstItem="gMe-2y-CXY" firstAttribute="top" secondItem="eW2-PD-Xx8" secondAttribute="top" constant="12" id="Yb8-6E-n0Y"/>
+                                                <constraint firstAttribute="trailing" secondItem="Csh-dv-14D" secondAttribute="trailing" constant="2" id="Zbb-1N-3xV"/>
+                                                <constraint firstItem="Csh-dv-14D" firstAttribute="centerY" secondItem="gMe-2y-CXY" secondAttribute="centerY" id="dta-VE-QlS"/>
                                                 <constraint firstItem="gMe-2y-CXY" firstAttribute="leading" secondItem="eW2-PD-Xx8" secondAttribute="leading" constant="20" id="w7h-jf-x4I"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -831,6 +840,7 @@
                     <connections>
                         <outlet property="bookImageView" destination="B0n-gE-ku2" id="CMW-Sa-qfI"/>
                         <outlet property="bookNameTextField" destination="z4e-ui-m9V" id="8IE-Cg-Ydf"/>
+                        <outlet property="choiseTypeOfDataLabel" destination="Csh-dv-14D" id="IP0-7w-tnX"/>
                         <outlet property="limitReadingLabel" destination="e1b-Qi-oaw" id="7fh-W5-ecR"/>
                         <outlet property="limitReadingPicker" destination="JNj-pF-mgc" id="U5P-sx-HS9"/>
                         <outlet property="numberOfPagesTextField" destination="0cO-Zi-RKT" id="4qb-k1-klL"/>
@@ -840,6 +850,7 @@
                         <outlet property="timeReadingLabelMinutes" destination="79b-6J-EPV" id="yWF-Sb-Ctw"/>
                         <outlet property="timeReadingLabelSecounds" destination="LT6-Ge-usQ" id="KeK-Uc-ZTd"/>
                         <outlet property="timeReadingPicker" destination="ZcT-O5-p1n" id="953-8r-R99"/>
+                        <outlet property="typeOfDataLabel" destination="gMe-2y-CXY" id="NH5-wB-63E"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIs-r9-pgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -888,7 +899,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cápitulos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Biy-Qw-xei">
-                                                    <rect key="frame" x="20" y="12" width="72.5" height="19.5"/>
+                                                    <rect key="frame" x="20" y="12" width="67.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -967,10 +978,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8RH-ck-Kkz">
-                                <rect key="frame" x="31" y="179" width="352" height="538"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8RH-ck-Kkz">
+                                <rect key="frame" x="20.5" y="179" width="373" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xOJ-f2-tfL">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xOJ-f2-tfL">
                                     <size key="itemSize" width="352" height="538"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1097,7 +1108,7 @@
                             <constraint firstItem="8RH-ck-Kkz" firstAttribute="centerY" secondItem="13g-Ld-lhS" secondAttribute="centerY" id="EOa-7E-zHe"/>
                             <constraint firstItem="8RH-ck-Kkz" firstAttribute="height" secondItem="13g-Ld-lhS" secondAttribute="height" multiplier="0.6" id="Nxm-Wj-klF"/>
                             <constraint firstItem="8RH-ck-Kkz" firstAttribute="centerX" secondItem="13g-Ld-lhS" secondAttribute="centerX" id="gNu-AH-bpr"/>
-                            <constraint firstItem="8RH-ck-Kkz" firstAttribute="width" secondItem="13g-Ld-lhS" secondAttribute="width" multiplier="0.85" id="lAe-6a-gmk"/>
+                            <constraint firstItem="8RH-ck-Kkz" firstAttribute="width" secondItem="13g-Ld-lhS" secondAttribute="width" multiplier="0.9" id="lAe-6a-gmk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oou-3A-mXj"/>
                     </view>

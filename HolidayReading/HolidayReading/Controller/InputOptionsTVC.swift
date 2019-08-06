@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-var inputOption: Int?
+var inputOption: Int = 0
 
 class InputOptionsTVC: UITableViewController {
 

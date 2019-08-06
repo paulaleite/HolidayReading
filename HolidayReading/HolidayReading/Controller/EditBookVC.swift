@@ -78,7 +78,12 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let book = book {
             bookNameLabel.text = book.bookName
             pagesReadLabel.text = "\(Int(book.pagesRead))"
-            totalPagesLabel.text = "páginas de \(Int(book.amountOfInputOption))"
+            if inputOption == 0 {
+                totalPagesLabel.text = "páginas de \(Int(book.amountOfInputOption))"
+            } else {
+                totalPagesLabel.text = "capítulos de \(Int(book.amountOfInputOption))"
+            }
+            
             daysLeftLabel.text = "\(Int((book.amountOfTimeLeft) * 1.15741e-5))"
             daysLabel.text = "dias sobrando"
         
