@@ -105,7 +105,8 @@ class CustomPickerTVCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDat
         book?.amountOfReadingTimeSecound = numOfSecound
         
         guard let bookID = book?.bookID else { return }
-        cancelNotification(forId: bookID)
+        cancelNotification(forId: bookID, category: 0)
+        cancelNotification(forId: bookID, category: 1)
         
         
     }

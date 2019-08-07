@@ -41,7 +41,6 @@ class MyBooksVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         noBooksImage.center.y = self.view.center.y - 80
         
         
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {

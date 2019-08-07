@@ -34,7 +34,8 @@ class TimeDatePickerTVCell: UITableViewCell {
         book?.timeOfReading = timeDatePicker.date as NSDate
         
         guard let bookID = book?.bookID else { return }
-        cancelNotification(forId: bookID)
+        cancelNotification(forId: bookID, category: 0)
+        cancelNotification(forId: bookID, category: 1)
         
         
     }

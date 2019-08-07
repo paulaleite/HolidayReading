@@ -241,7 +241,8 @@ class EditBookVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 // Não está cancelando a notificação
                 guard let bookID = book.bookID else { return }
-                cancelNotification(forId: bookID)
+                cancelNotification(forId: bookID, category: 0)
+                cancelNotification(forId: bookID, category: 1)
                 
                 self.context?.delete(book)
                 

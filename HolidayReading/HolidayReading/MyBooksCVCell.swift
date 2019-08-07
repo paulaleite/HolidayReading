@@ -20,12 +20,20 @@ class MyBookCVCell: UICollectionViewCell {
     
     @IBOutlet var bookImage: UIImageView! {
         didSet {
-            let rectShape = CAShapeLayer()
-            rectShape.bounds = self.bookImage.frame
-            rectShape.position = self.bookImage.center
-            rectShape.path = UIBezierPath(roundedRect: self.bookImage.bounds.offsetBy(dx: 0, dy: 20).insetBy(dx: 0, dy: -20), byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 8, height: 8)).cgPath
+            self.bookImage.layer.cornerRadius = 8
+//            let rectShape = CAShapeLayer()
+//            rectShape.bounds = self.bookImage.frame
+//            rectShape.position = self.bookImage.center
+//            if UIScreen.main.bounds.height > 2688 && UIScreen.main.bounds.width > 1242 {
+//                rectShape.path = UIBezierPath(roundedRect: self.bookImage.bounds.offsetBy(dx: 0, dy: 100).insetBy(dx: 0, dy: -100), byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 8, height: 8)).cgPath
+//
+//            } else {
+//                rectShape.path = UIBezierPath(roundedRect: self.bookImage.bounds.offsetBy(dx: 0, dy: 20).insetBy(dx: 0, dy: -20), byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 8, height: 8)).cgPath
+            //}
+        
             
-            self.bookImage.layer.mask = rectShape
+            
+            //self.bookImage.layer.mask = rectShape
         }
     }
  

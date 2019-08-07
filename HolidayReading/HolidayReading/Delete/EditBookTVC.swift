@@ -255,12 +255,12 @@ class EditBookTVC: UITableViewController {
         MainTVC?.updateBook()
         
         guard let bookID = book?.bookID else { return }
-        cancelNotification(forId: bookID)
-        cancelNotification(forId: bookID)
+        cancelNotification(forId: bookID, category: 0)
+        cancelNotification(forId: bookID, category: 1)
         guard let readingHour = book?.amountOfReadingTimeHour, let readingMinute = book?.amountOfReadingTimeMinute, let readingSecound = book?.amountOfReadingTimeSecound, let bookName = book?.bookName else { return }
-        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!")
+        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!", category: 0)
         
-        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?")
+        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Vamos anotar o seu progresso?", category: 1)
         
     }
     
@@ -297,8 +297,8 @@ class EditBookTVC: UITableViewController {
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
             guard let bookID = book.bookID else { return }
-            cancelNotification(forId: bookID)
-            cancelNotification(forId: bookID)
+            cancelNotification(forId: bookID, category: 0)
+            cancelNotification(forId: bookID, category: 1)
             
         }
         

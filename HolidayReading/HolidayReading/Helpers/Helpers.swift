@@ -11,7 +11,7 @@
 import UIKit
 import UserNotifications
 
-func scheduleNotification(for book: Book?, withTitle title: String, andBody body: String) {
+func scheduleNotification(for book: Book?, withTitle title: String, andBody body: String, category: Int) {
     guard let book = book as Book? else { return }
     let notificationCenter = UNUserNotificationCenter.current()
     
@@ -41,7 +41,7 @@ func scheduleNotification(for book: Book?, withTitle title: String, andBody body
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
             
             guard let bookID = book.bookID else { return }
-            let request = UNNotificationRequest(identifier: "\(bookID)", content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier: "\(bookID)\(category)", content: content, trigger: trigger)
             
             notificationCenter.add(request) { (error : Error?) in
                 if let error = error {
@@ -55,7 +55,7 @@ func scheduleNotification(for book: Book?, withTitle title: String, andBody body
     }
 }
 
-func scheduleSecoundNotification(for book: Book?, andBody body: String) {
+func scheduleSecoundNotification(for book: Book?, andBody body: String, category: Int) {
     guard let book = book as Book? else { return }
     let notificationCenter = UNUserNotificationCenter.current()
     
@@ -95,7 +95,7 @@ func scheduleSecoundNotification(for book: Book?, andBody body: String) {
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
             
             guard let bookID = book.bookID else { return }
-            let request = UNNotificationRequest(identifier: "\(bookID)", content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier: "\(bookID)\(category)", content: content, trigger: trigger)
             
             notificationCenter.add(request) { (error : Error?) in
                 if let error = error {
@@ -114,11 +114,11 @@ func scheduleSecoundNotification(for book: Book?, andBody body: String) {
 //    notificationCenter.removePendingNotificationRequests(withIdentifiers: ["\(id)"])
 //}
 
-func cancelNotification(forId id: String) {
+func cancelNotification(forId id: String, category: Int) {
     UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
         var identifiers: [String] = []
         for notification:UNNotificationRequest in notificationRequests {
-            if notification.identifier == "\(id)" {
+            if notification.identifier == "\(id)\(category)" {
                 identifiers.append(notification.identifier)
             }
         }

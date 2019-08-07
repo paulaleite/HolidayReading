@@ -219,9 +219,9 @@ class NewBookTVC: UITableViewController {
         
         // Notifications
         guard let readingHour = book?.amountOfReadingTimeHour, let readingMinute = book?.amountOfReadingTimeMinute, let readingSecound = book?.amountOfReadingTimeSecound else { return }
-        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!")
+        scheduleNotification(for: book, withTitle: "Hora de ler '\(bookName)'", andBody: "Lembre-se, está na hora de passar \(readingHour)h\(readingMinute)m\(readingSecound)s lendo!", category: 0)
         
-        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?")
+        scheduleSecoundNotification(for: book, andBody: "Pronto, você leu '\(bookName)'! Foram quantas páginas?", category: 1)
         
         self.dismiss(animated: true) {
             self.navigationController?.popViewController(animated: true)

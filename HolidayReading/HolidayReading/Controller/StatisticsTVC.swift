@@ -111,14 +111,20 @@ class StatisticsTVC: UITableViewController {
         return amountOfPagesRead
     }
     
-    func calcTotalOfMinutesRead(from books: [Book?]?) -> Int64 {
-        var amountOfMinutesRead: Int64 = 0
+    func calcTotalOfMinutesRead(from books: [Book?]?, from stats: [Statistics?]?) -> Int64 {
+        var amountOfMinutesRead: Int64 = 6
         
         guard let books = books else { return 0 }
+        guard let stats = stats else { return 0 }
+        
         
         for object in books {
             guard let book = object as Book? else { return 0 }
-            amountOfMinutesRead += book.timesRead * ((book.amountOfReadingTimeHour * 60) + book.amountOfReadingTimeMinute + (book.amountOfReadingTimeSecound / 60))
+            for object2 in stats {
+                guard let stat = object2 as Statistics? else { return 0 }
+                amountOfMinutesRead += stat.daysRead * ((book.amountOfReadingTimeHour * 60) + book.amountOfReadingTimeMinute + (book.amountOfReadingTimeSecound / 60))
+            }
+            
         }
         
         return amountOfMinutesRead

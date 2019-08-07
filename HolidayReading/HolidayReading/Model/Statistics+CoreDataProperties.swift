@@ -2,7 +2,7 @@
 //  Statistics+CoreDataProperties.swift
 //  HolidayReading
 //
-//  Created by Paula Leite on 24/07/19.
+//  Created by Paula Leite on 06/08/19.
 //  Copyright © 2019 Paula Torales Leite. All rights reserved.
 //
 //
@@ -19,9 +19,9 @@ extension Statistics {
 
     @NSManaged public var booksRead: Int64
     @NSManaged public var daysRead: Int64
+    @NSManaged public var lastDayRead: NSDate?
     @NSManaged public var minutesRead: Int64
     @NSManaged public var pagesRead: Int64
     @NSManaged public var pointsMade: Int64
-    @NSManaged public var lastDayRead: NSDate?
 
 }

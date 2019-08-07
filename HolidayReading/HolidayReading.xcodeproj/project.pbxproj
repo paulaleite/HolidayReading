@@ -18,10 +18,10 @@
 		1E9181D722F4B5A30065F92A /* DatePickerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9181D622F4B5A30065F92A /* DatePickerTVCell.swift */; };
 		1ED76F7222DE382400143660 /* ExtensionEditBookTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */; };
 		642E3E0A22E8E06100B8B288 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642E3E0922E8E06100B8B288 /* Helpers.swift */; };
-		642E3E0D22E8EB4800B8B288 /* Statistics+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642E3E0B22E8EB4800B8B288 /* Statistics+CoreDataClass.swift */; };
-		642E3E0E22E8EB4800B8B288 /* Statistics+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642E3E0C22E8EB4800B8B288 /* Statistics+CoreDataProperties.swift */; };
 		642E3E1122EDE64400B8B288 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642E3E0F22EDE64400B8B288 /* LoadingVC.swift */; };
 		642E3E1222EDE64400B8B288 /* LoadingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 642E3E1022EDE64400B8B288 /* LoadingVC.xib */; };
+		643A43BC22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A43BA22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift */; };
+		643A43BD22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A43BB22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift */; };
 		647809DC22D1156F00664CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647809DB22D1156F00664CA4 /* AppDelegate.swift */; };
 		647809E422D1156F00664CA4 /* HolidayReading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 647809E222D1156F00664CA4 /* HolidayReading.xcdatamodeld */; };
 		647809E622D1157100664CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647809E522D1157100664CA4 /* Assets.xcassets */; };
@@ -80,10 +80,10 @@
 		1E9181D622F4B5A30065F92A /* DatePickerTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTVCell.swift; sourceTree = "<group>"; };
 		1ED76F7122DE382400143660 /* ExtensionEditBookTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionEditBookTVC.swift; sourceTree = "<group>"; };
 		642E3E0922E8E06100B8B288 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		642E3E0B22E8EB4800B8B288 /* Statistics+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataClass.swift"; sourceTree = "<group>"; };
-		642E3E0C22E8EB4800B8B288 /* Statistics+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		642E3E0F22EDE64400B8B288 /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
 		642E3E1022EDE64400B8B288 /* LoadingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingVC.xib; sourceTree = "<group>"; };
+		643A43BA22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataClass.swift"; sourceTree = "<group>"; };
+		643A43BB22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		647809D822D1156F00664CA4 /* HolidayReading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolidayReading.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		647809DB22D1156F00664CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		647809E322D1156F00664CA4 /* HolidayReading.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HolidayReading.xcdatamodel; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 		64780A1E22D12BF700664CA4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				642E3E0B22E8EB4800B8B288 /* Statistics+CoreDataClass.swift */,
-				642E3E0C22E8EB4800B8B288 /* Statistics+CoreDataProperties.swift */,
+				643A43BA22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift */,
+				643A43BB22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift */,
 				64CBBDB622F7B027005F18D8 /* Book+CoreDataClass.swift */,
 				64CBBDB722F7B027005F18D8 /* Book+CoreDataProperties.swift */,
 				647809E222D1156F00664CA4 /* HolidayReading.xcdatamodeld */,
@@ -421,8 +421,9 @@
 				642E3E0A22E8E06100B8B288 /* Helpers.swift in Sources */,
 				64780A1B22D12BC600664CA4 /* MyBooksTVCell.swift in Sources */,
 				1E552DFC22F3594E002E79B0 /* MyBooksCVCell.swift in Sources */,
-				642E3E0E22E8EB4800B8B288 /* Statistics+CoreDataProperties.swift in Sources */,
+				643A43BC22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift in Sources */,
 				64780A1922D1267C00664CA4 /* MyBooksTVC.swift in Sources */,
+				643A43BD22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift in Sources */,
 				64CBBDB922F7B027005F18D8 /* Book+CoreDataProperties.swift in Sources */,
 				64E039DE22D8E2F400AD6B2E /* EditBookTVC.swift in Sources */,
 				64780A2222D1816400664CA4 /* QuantitiesTVCell.swift in Sources */,
@@ -442,7 +443,6 @@
 				64CBBDB122F7278E005F18D8 /* InputOptionsTVC.swift in Sources */,
 				64E9710022DD3412001335D0 /* ExtensionNewBookTVC.swift in Sources */,
 				64ADBAD322DC202E00391DF0 /* UpdatePagesReadVC.swift in Sources */,
-				642E3E0D22E8EB4800B8B288 /* Statistics+CoreDataClass.swift in Sources */,
 				64ADBAC622DBAB2300391DF0 /* RoundedImageView.swift in Sources */,
 				1E83688422E0E40F006C25E0 /* CustomButton.swift in Sources */,
 				642E3E1122EDE64400B8B288 /* LoadingVC.swift in Sources */,
