@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Allows the user to take a photo so it can to represent the book they want to add</string>
+	<string>The App requests access to the camera so that, when inserting a book, you may take a photo that represents it</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allows the user to choose a photo from their Photo Library so it can represent the book they want to add</string>
+	<string>The App requests acesso to the Photo Library so that, when inserting a book, you may choose a photo that represents it</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Display-Bold.otf</string>
