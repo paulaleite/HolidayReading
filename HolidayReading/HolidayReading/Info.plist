@@ -17,15 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8.0</string>
+	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Allows the user to take a photo to use in the App</string>
+	<string>Allows the user to take a photo so it can to represent the book they want to add</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allows the user to choose a photo from their Photo Library to use in the App</string>
+	<string>Allows the user to choose a photo from their Photo Library so it can represent the book they want to add</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Display-Bold.otf</string>

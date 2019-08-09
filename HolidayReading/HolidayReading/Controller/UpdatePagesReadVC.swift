@@ -96,10 +96,6 @@ class UpdatePagesReadVC: UIViewController {
         
         book?.pagesRead += amountOfPagesSlider.value
         
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
-        mainVC?.updateBook()
-        
         // Amount of days reading
         let currentCalendar = Calendar.autoupdatingCurrent
         let currentComponents = currentCalendar.dateComponents([.day, .month, .year], from: Date())
@@ -136,6 +132,8 @@ class UpdatePagesReadVC: UIViewController {
         stats[0].pointsMade = calcTotalPoint(from: stats)
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        mainVC?.updateBook()
         
         dismissVC()
         

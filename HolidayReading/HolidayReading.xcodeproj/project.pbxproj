@@ -18,6 +18,7 @@
 		642E3E0A22E8E06100B8B288 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642E3E0922E8E06100B8B288 /* Helpers.swift */; };
 		643A43BC22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A43BA22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift */; };
 		643A43BD22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A43BB22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift */; };
+		643A43BF22FA55E3004DC7D6 /* ExtensionNewBookTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A43BE22FA55E3004DC7D6 /* ExtensionNewBookTVC.swift */; };
 		647809DC22D1156F00664CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647809DB22D1156F00664CA4 /* AppDelegate.swift */; };
 		647809E422D1156F00664CA4 /* HolidayReading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 647809E222D1156F00664CA4 /* HolidayReading.xcdatamodeld */; };
 		647809E622D1157100664CA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647809E522D1157100664CA4 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		642E3E0922E8E06100B8B288 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		643A43BA22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataClass.swift"; sourceTree = "<group>"; };
 		643A43BB22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		643A43BE22FA55E3004DC7D6 /* ExtensionNewBookTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionNewBookTVC.swift; sourceTree = "<group>"; };
 		647809D822D1156F00664CA4 /* HolidayReading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolidayReading.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		647809DB22D1156F00664CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		647809E322D1156F00664CA4 /* HolidayReading.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HolidayReading.xcdatamodel; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				1E552DFD22F359DA002E79B0 /* MyBooksVC.swift */,
 				64CEED0122D514F10095C93D /* NewBookTVC.swift */,
+				643A43BE22FA55E3004DC7D6 /* ExtensionNewBookTVC.swift */,
 				64CBBDB022F7278E005F18D8 /* InputOptionsTVC.swift */,
 				647A638E22F3A8B4005AA9BF /* EditBookVC.swift */,
 				64ADBAD122DC202E00391DF0 /* UpdatePagesReadVC.swift */,
@@ -382,6 +385,7 @@
 				1E552DFC22F3594E002E79B0 /* MyBooksCVCell.swift in Sources */,
 				643A43BC22FA50A8004DC7D6 /* Statistics+CoreDataClass.swift in Sources */,
 				643A43BD22FA50A8004DC7D6 /* Statistics+CoreDataProperties.swift in Sources */,
+				643A43BF22FA55E3004DC7D6 /* ExtensionNewBookTVC.swift in Sources */,
 				64CBBDB922F7B027005F18D8 /* Book+CoreDataProperties.swift in Sources */,
 				64780A2222D1816400664CA4 /* QuantitiesTVCell.swift in Sources */,
 				64CBBDB822F7B027005F18D8 /* Book+CoreDataClass.swift in Sources */,
